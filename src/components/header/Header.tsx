@@ -1,0 +1,27 @@
+import DropdownMenu from '../dropdownMenu/DropdownMenu';
+import WormIcon from '../wormIcon/WormIcon';
+import HeaderLink from './HeaderLink';
+
+export default function Header() {
+  return (
+    <header className='fixed z-20 w-full p-2 backdrop-blur-md'>
+      <div className='max-w-3xl mx-auto'>
+        <nav className='flex items-center gap-3 text-base'>
+          <a href={'/'} className='flex group'>
+            <WormIcon />
+            <h2 className='flex items-center justify-center p-2 text-xl tracking-tighter'>Shoelacetip Ink</h2>
+          </a>
+          <div className='items-center hidden gap-6 md:flex'>
+            <HeaderLink href={'/art'}>Art</HeaderLink>
+            <HeaderLink href={'/tattoos'}>Tattoos</HeaderLink>
+            <HeaderLink href={'/contact'}>Contact</HeaderLink>
+          </div>
+          <div className='flex-1'></div>
+          <div className='md:hidden'>
+            <DropdownMenu />
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}

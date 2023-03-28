@@ -3,5 +3,5 @@ interface BodyProps {
 }
 
 export default function Body({ children }: BodyProps) {
-  return <div>{children}</div>;
+  return <div className='flex flex-col min-h-screen bg-lightOlive'>{children}</div>;
 }

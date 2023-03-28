@@ -8,7 +8,7 @@ interface DefaultHeadProps {
 
 const defaultTitle = 'Shoelacetip Ink';
 const defaultDescription = 'Get to know me and my work a little bit more, and if you like what you see, get in touch!';
-const image = '../../public/images/siteImage.jpg';
+const image = '/images/siteImage.jpg';
 
 export default function DefaultHead({ title = defaultTitle, description = defaultDescription }: DefaultHeadProps) {
   const [url, setUrl] = useState<string>('');
