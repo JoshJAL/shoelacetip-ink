@@ -14,7 +14,7 @@ export default function HeaderLink({ href, children }: HeaderLinkProps) {
     } else {
       setActive(false);
     }
-  }, []);
+  }, [href]);
 
   return (
     <a

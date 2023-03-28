@@ -13,7 +13,7 @@ export default function IndividualTestimonial({ firstName, lastName, text, image
     <section className='flex flex-col p-7 bg-lilac rounded-xl md:w-[320px] w-full gap-6'>
       <div className='flex flex-col items-start justify-start'>
         <p className='text-lg font-semibold '>
-          <span className='text-5xl font-black text-customPink drop-shadow-[0_1.2px_1px_rgba(0,0,0,0.8)]'>"</span>
+          <span className='text-5xl font-black text-customPink drop-shadow-[0_1.2px_1px_rgba(0,0,0,0.8)]'>&quot;</span>
           {text}
         </p>
         <div className='flex items-center justify-between gap-1 mt-7'>

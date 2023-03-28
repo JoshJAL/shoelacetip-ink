@@ -1,5 +1,5 @@
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface WorkHighlightsProps {
   autoScroll?: boolean;
@@ -16,11 +16,11 @@ export default function WorkHighlights({ autoScroll = true, scrollInterval = 300
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  function nextSlide() {
+  const nextSlide = useCallback(() => {
     const isLastSlide = currentSlide === slides.length - 1;
     const newIndex = isLastSlide ? 0 : currentSlide + 1;
     setCurrentSlide(newIndex);
-  }
+  }, [currentSlide, slides.length]);
 
   function prevSlide() {
     const isFirstSlide = currentSlide === 0;
@@ -32,7 +32,7 @@ export default function WorkHighlights({ autoScroll = true, scrollInterval = 300
     if (!autoScroll) return;
     const timer = setTimeout(nextSlide, scrollInterval);
     return () => clearTimeout(timer);
-  }, [currentSlide]);
+  }, [currentSlide, autoScroll, scrollInterval, nextSlide]);
 
   return (
     <div className='max-w-lg h-[780px] w-full m-auto pb-10 relative group'>
@@ -63,7 +63,7 @@ export default function WorkHighlights({ autoScroll = true, scrollInterval = 300
               index === currentSlide ? 'scale-[2]' : ''
             } transition-all duration-200 ease-in-out`}
           >
-            <img src={slide} />
+            <img src={slide} alt='Rotating image preview' />
           </div>
         ))}
       </div>
