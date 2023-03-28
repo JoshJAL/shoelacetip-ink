@@ -5,10 +5,10 @@ import HeaderLink from './HeaderLink';
 export default function Header() {
   return (
     <header className='fixed z-20 w-full p-2 backdrop-blur-md'>
-      <div className='max-w-3xl mx-auto'>
+      <div className='max-w-6xl mx-auto'>
         <nav className='flex items-center gap-3 text-base'>
           <a href={'/'} className='flex group'>
-            <WormIcon />
+            <WormIcon fill='#ef98f9' />
             <h2 className='flex items-center justify-center p-2 text-xl tracking-tighter'>Shoelacetip Ink</h2>
           </a>
           <div className='items-center hidden gap-6 md:flex'>

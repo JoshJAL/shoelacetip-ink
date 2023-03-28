@@ -13,7 +13,8 @@ module.exports = {
       colors: {
         lightOlive: '#f3fe95',
         lilac: '#92b3fa',
-        customPink: '#ef98f9'
+        customPink: '#ef98f9',
+        darkOlive: '#e0d347'
       }
     }
   },

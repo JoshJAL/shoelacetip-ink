@@ -3,5 +3,5 @@ interface ContentProps {
 }
 
 export default function Content({ children }: ContentProps) {
-  return <article className={`px-8 mx-auto max-w-3xl`}>{children}</article>;
+  return <article className={`px-5 mx-auto max-w-6xl text-zinc-900`}>{children}</article>;
 }
