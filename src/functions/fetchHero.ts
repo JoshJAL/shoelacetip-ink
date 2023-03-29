@@ -12,3 +12,11 @@ export async function fetchHero(setHeroInformation: Dispatch<SetStateAction<Hero
     setHeroInformation(data[0] as unknown as Hero);
   }
 }
+
+export async function updateHero(bio: string, minimum_rate: string, hourly_rate: string, disclaimer: string) {
+  const { error } = await supabase.from('hero').update({ bio, minimum_rate, hourly_rate, disclaimer }).eq('id', 1);
+
+  if (error) {
+    console.log(error);
+  }
+}

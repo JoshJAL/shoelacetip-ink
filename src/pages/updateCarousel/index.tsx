@@ -1,7 +1,7 @@
 import Body from '@/components/Body';
 import Content from '@/components/Content';
 import DefaultHead from '@/components/DefaultHead';
-import Header from '@/components/header/Header';
+import UpdatePagesHeader from '@/components/header/UpdatePagesHeader';
 import Main from '@/components/Main';
 import CurrentImagesInCarousel from '@/components/workHighlights/CurrentImagesInCarousel';
 import UpdateCarouselForm from '@/components/workHighlights/UpdateCarouselForm';
@@ -23,7 +23,7 @@ export default function UpdateCarousel() {
     <>
       <DefaultHead />
       <Body>
-        <Header />
+        <UpdatePagesHeader />
         <Main>
           <Content>
             <CurrentImagesInCarousel currentImages={currentImages} setCurrentImages={setCurrentImages} />
