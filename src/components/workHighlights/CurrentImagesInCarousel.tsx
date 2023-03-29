@@ -52,7 +52,7 @@ export default function CurrentImagesInCarousel({ currentImages, setCurrentImage
             <div className='relative flex flex-col items-center w-full group' key={index}>
               <img
                 src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${image}`}
-                alt=''
+                alt={`Carousel Image ${index}`}
                 className='w-full mt-2 border rounded-lg border-lilac'
               />
               <button
