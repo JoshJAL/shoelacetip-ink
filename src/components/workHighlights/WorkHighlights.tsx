@@ -4,16 +4,10 @@ import { useState, useEffect, useCallback } from 'react';
 interface WorkHighlightsProps {
   autoScroll?: boolean;
   scrollInterval?: number;
+  slides: string[];
 }
 
-export default function WorkHighlights({ autoScroll = true, scrollInterval = 3000 }: WorkHighlightsProps) {
-  const slides = [
-    'https://i.ibb.co/ncrXc2V/1.png',
-    'https://i.ibb.co/B3s7v4h/2.png',
-    'https://i.ibb.co/XXR8kzF/3.png',
-    'https://i.ibb.co/yg7BSdM/4.png'
-  ];
-
+export default function WorkHighlights({ autoScroll = true, scrollInterval = 3000, slides }: WorkHighlightsProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = useCallback(() => {
@@ -35,10 +29,12 @@ export default function WorkHighlights({ autoScroll = true, scrollInterval = 300
   }, [currentSlide, autoScroll, scrollInterval, nextSlide]);
 
   return (
-    <div className='max-w-lg h-[780px] w-full m-auto pb-10 relative group'>
+    <div className='max-w-lg h-[780px] w-full m-auto pb-12 relative group'>
       <div
         className='w-full h-full duration-500 bg-center bg-cover rounded-2xl'
-        style={{ backgroundImage: `url(${slides[currentSlide]})` }}
+        style={{
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${slides[currentSlide]})`
+        }}
       />
       {/* Left Arrow */}
       <button
@@ -54,16 +50,19 @@ export default function WorkHighlights({ autoScroll = true, scrollInterval = 300
       >
         <IoChevronForward size={30} />
       </button>
-      <div className='flex justify-center py-2 top-4'>
+      <div className='flex justify-center py-4 top-4'>
         {slides.map((slide, index) => (
           <div
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`h-2 w-2 mx-1 cursor-pointer ${
-              index === currentSlide ? 'scale-[2]' : ''
+            className={`h-4 w-4 flex mx-1 items-center cursor-pointer ${
+              index === currentSlide ? 'scale-[2.4] mx-3' : ''
             } transition-all duration-200 ease-in-out`}
           >
-            <img src={slide} alt='Rotating image preview' />
+            <img
+              src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${slide}`}
+              alt='Rotating image preview'
+            />
           </div>
         ))}
       </div>

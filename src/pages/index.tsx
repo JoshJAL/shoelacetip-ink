@@ -7,18 +7,24 @@ import Main from '@/components/Main';
 import Testimonials from '@/components/testimonials/Testimonials';
 import WorkHighlights from '@/components/workHighlights/WorkHighlights';
 import { Hero as HeroType } from '@/types/hero';
-import { Carousel } from '@/types/carousel';
 import { Testimonial } from '@/types/testimonials';
 import { useState, useEffect } from 'react';
-import supabase from '@/utils/supabase';
 import { fetchHero } from '@/functions/fetchHero';
 import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
+import { fetchCurrentImages } from '@/functions/fetchCarousel';
 
 export default function Home() {
   const [heroInformation, setHeroInformation] = useState<HeroType>({} as HeroType);
-  const [carouselImages, setCarouselImages] = useState<Carousel[]>([] as Carousel[]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([] as Testimonial[]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [currentImages, setCurrentImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function fetchImages() {
+      fetchCurrentImages(setCurrentImages);
+    }
+    fetchImages();
+  }, [setCurrentImages]);
 
   useEffect(() => {
     try {
@@ -42,7 +48,7 @@ export default function Home() {
             ) : (
               <>
                 <Hero heroInformation={heroInformation} />
-                <WorkHighlights />
+                <WorkHighlights slides={currentImages} />
                 <Testimonials />
               </>
             )}
