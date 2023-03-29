@@ -16,25 +16,18 @@ import { fetchCurrentImages } from '@/functions/fetchCarousel';
 export default function Home() {
   const [heroInformation, setHeroInformation] = useState<HeroType>({} as HeroType);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([] as Testimonial[]);
-  const [loading, setLoading] = useState<boolean>(true);
   const [currentImages, setCurrentImages] = useState<string[]>([]);
-
-  useEffect(() => {
-    async function fetchImages() {
-      fetchCurrentImages(setCurrentImages);
-    }
-    fetchImages();
-  }, [setCurrentImages]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     try {
       fetchHero(setHeroInformation);
+      fetchCurrentImages(setCurrentImages);
+      setLoading(false);
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
-  }, []);
+  }, [setCurrentImages]);
 
   return (
     <>
