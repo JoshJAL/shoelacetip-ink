@@ -18,19 +18,23 @@ export default function Home() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([] as Testimonial[]);
   const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [initialLoad, setInitialLoad] = useState<boolean>(true);
 
   useEffect(() => {
     try {
       fetchHero(setHeroInformation);
       fetchCurrentImages(setCurrentImages);
+      setInitialLoad(false);
     } catch (error) {
       console.log(error);
     }
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, [setCurrentImages]);
+    if (!initialLoad) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }
+  }, [setCurrentImages, initialLoad]);
 
   return (
     <>
