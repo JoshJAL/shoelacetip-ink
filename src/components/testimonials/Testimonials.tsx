@@ -14,6 +14,7 @@ export default function Testimonials({ testimonials }: Props) {
       <div className='flex flex-wrap gap-5'>
         {testimonials.map((testimonial) => (
           <IndividualTestimonial
+            key={testimonial.id}
             firstName={testimonial.first_name}
             lastName={testimonial.last_name}
             affiliation={testimonial.affiliation}

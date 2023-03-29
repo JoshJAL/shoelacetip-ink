@@ -1,8 +1,8 @@
 import Image, { StaticImageData } from 'next/image';
 
 interface TestimonialProps {
-  firstName: string;
-  lastName: string;
+  firstName: string | null;
+  lastName: string | null;
   text: string;
   affiliation: string;
   image: string;
@@ -18,13 +18,15 @@ export default function IndividualTestimonial({ firstName, lastName, text, image
         </p>
         <div className='flex items-center justify-between gap-1 mt-7'>
           <div className='flex flex-col flex-1'>
-            <p className='text-xl font-medium'>
-              <span className='text-customPink drop-shadow-[0_1.2px_1px_rgba(0,0,0,0.8)]'>@</span>
-              &nbsp;
-              {firstName}
-              &nbsp;
-              {lastName}
-            </p>
+            {firstName || lastName ? (
+              <p className='text-xl font-medium'>
+                <span className='text-customPink drop-shadow-[0_1.2px_1px_rgba(0,0,0,0.8)]'>@</span>
+                &nbsp;
+                {firstName}
+                &nbsp;
+                {lastName}
+              </p>
+            ) : null}
             <p className='mt-1 text-base'>{affiliation}</p>
           </div>
         </div>
