@@ -5,7 +5,7 @@ interface TestimonialProps {
   lastName: string;
   text: string;
   affiliation: string;
-  image: StaticImageData;
+  image: string;
 }
 
 export default function IndividualTestimonial({ firstName, lastName, text, image, affiliation }: TestimonialProps) {
@@ -29,7 +29,7 @@ export default function IndividualTestimonial({ firstName, lastName, text, image
           </div>
         </div>
       </div>
-      <Image src={image} alt={`${firstName} ${lastName}'s Tattoo`} className='border rounded-lg border-customPink' />
+      <img src={image} alt={`${firstName} ${lastName}'s Tattoo`} className='border rounded-lg border-customPink' />
     </section>
   );
 }

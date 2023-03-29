@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 import { fetchHero } from '@/functions/fetchHero';
 import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
 import { fetchCurrentImages } from '@/functions/fetchCarousel';
+import { fetchTestimonials } from '@/functions/fetchTestimonials';
 
 export default function Home() {
   const [heroInformation, setHeroInformation] = useState<HeroType>({} as HeroType);
@@ -25,6 +26,7 @@ export default function Home() {
       fetchHero(setHeroInformation);
       fetchCurrentImages(setCurrentImages);
       setInitialLoad(false);
+      fetchTestimonials(setTestimonials);
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +51,7 @@ export default function Home() {
               <>
                 <Hero heroInformation={heroInformation} />
                 <WorkHighlights slides={currentImages} />
-                <Testimonials />
+                <Testimonials testimonials={testimonials} />
               </>
             )}
           </Content>
