@@ -23,10 +23,13 @@ export default function Home() {
     try {
       fetchHero(setHeroInformation);
       fetchCurrentImages(setCurrentImages);
-      setLoading(false);
     } catch (error) {
       console.log(error);
     }
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, [setCurrentImages]);
 
   return (

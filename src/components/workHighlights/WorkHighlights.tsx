@@ -29,9 +29,9 @@ export default function WorkHighlights({ autoScroll = true, scrollInterval = 300
   }, [currentSlide, autoScroll, scrollInterval, nextSlide]);
 
   return (
-    <div className='max-w-lg h-[780px] w-full m-auto pb-12 relative group'>
+    <div className='max-w-xl md:h-[780px] h-[615px] w-full m-auto pb-12 relative group'>
       <div
-        className='w-full h-full duration-500 bg-center bg-cover rounded-2xl'
+        className='w-full h-full duration-500 bg-center bg-cover border-2 rounded-2xl border-lilac'
         style={{
           backgroundImage: `url(${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${slides[currentSlide]})`
         }}
