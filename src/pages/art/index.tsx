@@ -4,7 +4,7 @@ import DefaultHead from '@/components/DefaultHead';
 import Header from '@/components/header/Header';
 import Main from '@/components/Main';
 
-export default function Contact() {
+export default function Art() {
   return (
     <>
       <DefaultHead />
@@ -12,7 +12,7 @@ export default function Contact() {
         <Header />
         <Main>
           <Content>
-            <p>Contact me</p>
+            <p>Art showcase</p>
           </Content>
         </Main>
       </Body>
