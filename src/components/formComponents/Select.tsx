@@ -14,8 +14,8 @@ export default function Select({ name, value, onChange, options }: Props) {
       value={value}
       onChange={onChange}
     >
-      {options.map((option) => (
-        <option disabled={option.value === '' ? true : false} value={option.value}>
+      {options.map((option, index) => (
+        <option disabled={option.value === '' ? true : false} value={option.value} key={index}>
           {option.text}
         </option>
       ))}
