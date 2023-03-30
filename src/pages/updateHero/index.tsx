@@ -17,7 +17,7 @@ export default function UpdateHero() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [setCurrentHero]);
 
   return (
     <>
