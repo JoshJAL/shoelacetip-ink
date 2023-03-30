@@ -11,20 +11,11 @@ interface Props {
 }
 
 export default function UpdateHeroContent({ currentHero }: Props) {
-  const [bio, setBio] = useState('');
-  const [minimumRate, setMinimumRate] = useState('');
-  const [hourlyRate, setHourlyRate] = useState('');
-  const [disclaimer, setDisclaimer] = useState('');
+  const [bio, setBio] = useState(currentHero.bio as string);
+  const [minimumRate, setMinimumRate] = useState(currentHero.minimum_rate as string);
+  const [hourlyRate, setHourlyRate] = useState(currentHero.hourly_rate as string);
+  const [disclaimer, setDisclaimer] = useState(currentHero.disclaimer as string);
   const [submitting, setSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (currentHero) {
-      setBio(currentHero.bio);
-      setMinimumRate(currentHero.minimum_rate);
-      setHourlyRate(currentHero.hourly_rate);
-      setDisclaimer(currentHero.disclaimer);
-    }
-  }, [currentHero]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
