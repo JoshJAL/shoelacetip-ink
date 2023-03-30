@@ -31,11 +31,11 @@ export default function Home() {
       console.log(error);
     }
 
-    if (!initialLoad) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-    }
+    // if (!initialLoad) {
+    //   setTimeout(() => {
+    //     setLoading(false);
+    //   }, 1000);
+    // }
   }, [setCurrentImages, initialLoad]);
 
   return (
