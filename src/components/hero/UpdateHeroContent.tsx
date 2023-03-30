@@ -1,10 +1,10 @@
-import { Hero } from '@/types/hero';
-import Label from '../formComponents/Label';
-import { useState, useEffect } from 'react';
-import SubmitButton from '../formComponents/SubmitButton';
 import { updateHero as updateHeroFunction } from '@/functions/fetchHero';
-import TextArea from '../formComponents/TextArea';
+import { Hero } from '@/types/hero';
+import { useState } from 'react';
 import InputTextEmailPassword from '../formComponents/InputTextEmailPassword';
+import Label from '../formComponents/Label';
+import SubmitButton from '../formComponents/SubmitButton';
+import TextArea from '../formComponents/TextArea';
 
 interface Props {
   currentHero: Hero;

@@ -7,7 +7,7 @@ import AddTestimonialForm from '@/components/testimonials/AddTestimonialForm';
 import UpdateTestimonialsForm from '@/components/testimonials/UpdateTestimonialsForm';
 import { fetchTestimonials } from '@/functions/fetchTestimonials';
 import { Testimonial } from '@/types/testimonials';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function UpdateTestimonials() {
   const [currentTestimonials, setCurrentTestimonials] = useState<Testimonial[]>([]);

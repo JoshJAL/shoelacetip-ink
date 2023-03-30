@@ -1,7 +1,5 @@
-import { fetchCurrentImages } from '@/functions/fetchCarousel';
 import supabase from '@/utils/supabase';
-import { useRef } from 'react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Label from '../formComponents/Label';
 import SubmitButton from '../formComponents/SubmitButton';
 

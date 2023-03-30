@@ -1,10 +1,10 @@
+import { Testimonial } from '@/types/testimonials';
+import supabase from '@/utils/supabase';
+import { useRef, useState } from 'react';
 import InputTextEmailPassword from '../formComponents/InputTextEmailPassword';
 import Label from '../formComponents/Label';
-import { useState, useRef } from 'react';
-import TextArea from '../formComponents/TextArea';
 import SubmitButton from '../formComponents/SubmitButton';
-import supabase from '@/utils/supabase';
-import { Testimonial } from '@/types/testimonials';
+import TextArea from '../formComponents/TextArea';
 
 interface AddTestimonialFormProps {
   currentTestimonials: Testimonial[];

@@ -3,16 +3,16 @@ import Content from '@/components/Content';
 import DefaultHead from '@/components/DefaultHead';
 import Header from '@/components/header/Header';
 import Hero from '@/components/hero/Hero';
+import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
 import Main from '@/components/Main';
 import Testimonials from '@/components/testimonials/Testimonials';
 import WorkHighlights from '@/components/workHighlights/WorkHighlights';
+import { fetchCurrentImages } from '@/functions/fetchCarousel';
+import { fetchHero } from '@/functions/fetchHero';
+import { fetchTestimonials } from '@/functions/fetchTestimonials';
 import { Hero as HeroType } from '@/types/hero';
 import { Testimonial } from '@/types/testimonials';
-import { useState, useEffect } from 'react';
-import { fetchHero } from '@/functions/fetchHero';
-import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
-import { fetchCurrentImages } from '@/functions/fetchCarousel';
-import { fetchTestimonials } from '@/functions/fetchTestimonials';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [heroInformation, setHeroInformation] = useState<HeroType[]>([]);

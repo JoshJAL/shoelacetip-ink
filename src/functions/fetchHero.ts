@@ -1,7 +1,6 @@
-import supabase from '@/utils/supabase';
 import { Hero } from '@/types/hero';
-import { Dispatch } from 'react';
-import { SetStateAction } from 'react';
+import supabase from '@/utils/supabase';
+import { Dispatch, SetStateAction } from 'react';
 
 export async function fetchHero(setHeroInformation: Dispatch<SetStateAction<Hero[]>>) {
   let { data, error } = await supabase.from('hero').select('*').eq('id', 1);

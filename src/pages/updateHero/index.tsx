@@ -6,7 +6,7 @@ import UpdateHeroContent from '@/components/hero/UpdateHeroContent';
 import Main from '@/components/Main';
 import { fetchHero } from '@/functions/fetchHero';
 import { Hero } from '@/types/hero';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function UpdateHero() {
   const [currentHeroArray, setCurrentHeroArray] = useState<Hero[]>([]);

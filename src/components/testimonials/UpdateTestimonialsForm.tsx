@@ -1,12 +1,12 @@
+import { deleteTestimonial } from '@/functions/fetchTestimonials';
 import { Testimonial } from '@/types/testimonials';
+import supabase from '@/utils/supabase';
+import { useRef, useState } from 'react';
+import Button from '../Button';
 import InputTextEmailPassword from '../formComponents/InputTextEmailPassword';
 import Label from '../formComponents/Label';
-import { useState, useRef } from 'react';
-import TextArea from '../formComponents/TextArea';
 import SubmitButton from '../formComponents/SubmitButton';
-import supabase from '@/utils/supabase';
-import Button from '../Button';
-import { deleteTestimonial } from '@/functions/fetchTestimonials';
+import TextArea from '../formComponents/TextArea';
 
 interface Props {
   currentTestimonial: Testimonial;
