@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import Button from '../Button';
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
 import WormIcon from '../wormIcon/WormIcon';
 import HeaderLink from './HeaderLink';
@@ -17,6 +19,11 @@ export default function Header() {
             <HeaderLink href={'/contact'}>Contact</HeaderLink>
           </div>
           <div className='flex-1'></div>
+          <Button
+            text='Book Me'
+            additionalClasses='font-semibold'
+            onClick={() => (window.location.href = '/contact')}
+          />
           <div className='md:hidden'>
             <DropdownMenu />
           </div>
