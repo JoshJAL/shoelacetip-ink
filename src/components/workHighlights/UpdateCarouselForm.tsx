@@ -73,6 +73,7 @@ export default function UpdateCarouselForm({ currentImages, setCurrentImages }: 
     <form className='flex flex-col w-full' onSubmit={(e) => handleSubmit(e)}>
       <Label text='Would you like to add Additional Images?' htmlFor='updateCarouselImages' />
       <input
+        required
         type={'file'}
         multiple
         name={'updateCarouselImages'}

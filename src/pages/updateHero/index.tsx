@@ -25,7 +25,7 @@ export default function UpdateHero() {
       <Body>
         <UpdatePagesHeader />
         <Main>
-          <Content>
+          <Content additionalClasses='w-full justify-center flex'>
             <UpdateHeroContent currentHero={currentHero} />
           </Content>
         </Main>

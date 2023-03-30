@@ -1,18 +1,13 @@
-$lilac: #92b3fa;
-$customPink: #ef98f9;
-
 .loader {
   width: 54px;
   height: 54px;
   position: relative;
   border-radius: 4px;
-  background-color: $lilac;
-  background-image: radial-gradient(circle 5px, $customPink 100%, transparent 0),
-    radial-gradient(circle 5px, $customPink 100%, transparent 0),
-    radial-gradient(circle 5px, $customPink 100%, transparent 0),
-    radial-gradient(circle 5px, $customPink 100%, transparent 0),
-    radial-gradient(circle 5px, $customPink 100%, transparent 0),
-    radial-gradient(circle 5px, $customPink 100%, transparent 0);
+  background-color: #92b3fa;
+  background-image: radial-gradient(circle 5px, #ef98f9 100%, transparent 0),
+    radial-gradient(circle 5px, #ef98f9 100%, transparent 0), radial-gradient(circle 5px, #ef98f9 100%, transparent 0),
+    radial-gradient(circle 5px, #ef98f9 100%, transparent 0), radial-gradient(circle 5px, #ef98f9 100%, transparent 0),
+    radial-gradient(circle 5px, #ef98f9 100%, transparent 0);
   background-repeat: no-repeat;
   animation: move 4s linear infinite, rotate 2s linear infinite;
 }

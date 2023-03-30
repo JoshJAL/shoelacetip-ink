@@ -34,19 +34,25 @@ export default function UpdateHeroContent({ currentHero }: Props) {
   }
 
   return (
-    <form className='flex flex-col w-full' onSubmit={(e) => handleSubmit(e)}>
+    <form className='flex flex-col w-full max-w-lg' onSubmit={(e) => handleSubmit(e)}>
       <Label htmlFor='bio' text='Bio:' />
-      <TextArea name='bio' value={bio} onChange={(e) => setBio(e.target.value)} />
+      <TextArea required name='bio' value={bio} onChange={(e) => setBio(e.target.value)} />
       <Label htmlFor='minimumRate' text='Minimum Rate:' />
       <InputTextEmailPassword
+        required
         name={'minimumRate'}
         value={minimumRate}
         onChange={(e) => setMinimumRate(e.target.value)}
       />
       <Label htmlFor='hourlyRate' text='Hourly Rate:' />
-      <InputTextEmailPassword name={'hourlyRate'} value={hourlyRate} onChange={(e) => setHourlyRate(e.target.value)} />
+      <InputTextEmailPassword
+        required
+        name={'hourlyRate'}
+        value={hourlyRate}
+        onChange={(e) => setHourlyRate(e.target.value)}
+      />
       <Label htmlFor='disclaimer' text='Disclaimer:' />
-      <TextArea name='disclaimer' value={disclaimer} onChange={(e) => setDisclaimer(e.target.value)} />
+      <TextArea required name='disclaimer' value={disclaimer} onChange={(e) => setDisclaimer(e.target.value)} />
       <div className='py-4'>
         <SubmitButton text={submitting ? 'Submitting...' : 'Submit'} />
       </div>
