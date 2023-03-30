@@ -14,9 +14,8 @@ export default function Header() {
             <h2 className='flex items-center justify-center p-2 text-xl tracking-tighter'>Shoelacetip Ink</h2>
           </a>
           <div className='items-center hidden gap-6 md:flex'>
-            <HeaderLink href={'/art'}>Art</HeaderLink>
+            <HeaderLink href={'/artist'}>Artist</HeaderLink>
             <HeaderLink href={'/tattoos'}>Tattoos</HeaderLink>
-            <HeaderLink href={'/contact'}>Contact</HeaderLink>
           </div>
           <div className='flex-1'></div>
           <Button

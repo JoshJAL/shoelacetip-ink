@@ -4,7 +4,7 @@ import DefaultHead from '@/components/DefaultHead';
 import Header from '@/components/header/Header';
 import Main from '@/components/Main';
 
-export default function Art() {
+export default function Artist() {
   return (
     <>
       <DefaultHead />
