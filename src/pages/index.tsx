@@ -50,7 +50,7 @@ export default function Home() {
             ) : (
               <>
                 {heroInformation.map((hero) => (
-                  <Hero heroInformation={hero} />
+                  <Hero heroInformation={hero} key={hero.id} />
                 ))}
                 <WorkHighlights slides={currentImages} />
                 <Testimonials testimonials={testimonials} />
