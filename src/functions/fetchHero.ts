@@ -3,14 +3,9 @@ import { Hero } from '@/types/hero';
 import { Dispatch } from 'react';
 import { SetStateAction } from 'react';
 
-export async function fetchHero(setHeroInformation: Dispatch<SetStateAction<Hero>>) {
-  const { data, error } = await supabase.from('hero').select('*');
-  if (error) {
-    console.log(error);
-  } else {
-    if (!data) return;
-    setHeroInformation(data[0] as unknown as Hero);
-  }
+export async function fetchHero(setHeroInformation: Dispatch<SetStateAction<Hero[]>>) {
+  let { data, error } = await supabase.from('hero').select('*').eq('id', 1);
+  setHeroInformation(data! as Hero[]);
 }
 
 export async function updateHero(bio: string, minimum_rate: string, hourly_rate: string, disclaimer: string) {

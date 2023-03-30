@@ -9,15 +9,15 @@ import { Hero } from '@/types/hero';
 import { useState, useEffect } from 'react';
 
 export default function UpdateHero() {
-  const [currentHero, setCurrentHero] = useState<Hero>({} as Hero);
+  const [currentHeroArray, setCurrentHeroArray] = useState<Hero[]>([]);
 
   useEffect(() => {
     try {
-      fetchHero(setCurrentHero);
+      fetchHero(setCurrentHeroArray);
     } catch (error) {
       console.log(error);
     }
-  }, [setCurrentHero]);
+  }, [setCurrentHeroArray]);
 
   return (
     <>
@@ -26,7 +26,9 @@ export default function UpdateHero() {
         <UpdatePagesHeader />
         <Main>
           <Content additionalClasses='w-full justify-center flex'>
-            <UpdateHeroContent currentHero={currentHero} />
+            {currentHeroArray.map((currentHero) => (
+              <UpdateHeroContent currentHero={currentHero} key={currentHero.id} />
+            ))}
           </Content>
         </Main>
       </Body>

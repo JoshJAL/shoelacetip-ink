@@ -15,7 +15,7 @@ import { fetchCurrentImages } from '@/functions/fetchCarousel';
 import { fetchTestimonials } from '@/functions/fetchTestimonials';
 
 export default function Home() {
-  const [heroInformation, setHeroInformation] = useState<HeroType>({} as HeroType);
+  const [heroInformation, setHeroInformation] = useState<HeroType[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([] as Testimonial[]);
   const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -49,7 +49,9 @@ export default function Home() {
               <LoadingSpinner />
             ) : (
               <>
-                <Hero heroInformation={heroInformation} />
+                {heroInformation.map((hero) => (
+                  <Hero heroInformation={hero} />
+                ))}
                 <WorkHighlights slides={currentImages} />
                 <Testimonials testimonials={testimonials} />
               </>
