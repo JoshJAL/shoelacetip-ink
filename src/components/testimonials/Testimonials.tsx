@@ -7,7 +7,7 @@ interface Props {
 
 export default function Testimonials({ testimonials }: Props) {
   return (
-    <div className='flex flex-col w-full px-4 py-5 md:px-8 md:py-7 bg-darkOlive rounded-2xl'>
+    <div className='flex flex-col w-full px-4 py-5 md:px-8 md:py-7 bg-lightOlive rounded-2xl'>
       <div className='min-h-[100px]'>
         <p className='font-bold md:text-[60px] text-[27px]'>What others are saying</p>
       </div>
