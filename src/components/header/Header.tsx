@@ -15,7 +15,8 @@ export default function Header() {
           </a>
           <div className='items-center hidden gap-6 md:flex'>
             <HeaderLink href={'/artist'}>Artist</HeaderLink>
-            <HeaderLink href={'/tattoos'}>Tattoos</HeaderLink>
+            <HeaderLink href={'/gallery'}>Gallery</HeaderLink>
+            <HeaderLink href={'/FAQ'}>FAQ</HeaderLink>
           </div>
           <div className='flex-1'></div>
           <Button

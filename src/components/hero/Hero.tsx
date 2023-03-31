@@ -19,18 +19,6 @@ export default function Hero({ heroInformation }: HeroProps) {
         <Blurb>
           <p dangerouslySetInnerHTML={{ __html: heroInformation.bio }} />
         </Blurb>
-        <div className='flex w-full flex-start'>
-          <ul className='flex flex-col gap-2'>
-            <li className='text-lg font-bold'>Rates:</li>
-            <li className='ml-5'>
-              <span className='font-semibold underline underline-offset-2'>Minimum</span>:{' '}
-              {heroInformation.minimum_rate}
-            </li>
-            <li className='ml-5'>
-              <span className='font-semibold underline underline-offset-2'>Hourly</span>: {heroInformation.hourly_rate}
-            </li>
-          </ul>
-        </div>
         <p className='py-4 text-xl font-semibold text-center'>
           <i>{heroInformation.disclaimer}</i>
         </p>

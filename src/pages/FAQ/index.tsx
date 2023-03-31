@@ -1,11 +1,10 @@
-import Blurb from '@/components/blurb/Blurb';
 import Body from '@/components/Body';
 import Content from '@/components/Content';
 import DefaultHead from '@/components/DefaultHead';
 import Header from '@/components/header/Header';
 import Main from '@/components/Main';
 
-export default function Artist() {
+export default function FAQ() {
   return (
     <>
       <DefaultHead />
@@ -13,9 +12,7 @@ export default function Artist() {
         <Header />
         <Main>
           <Content>
-            <Blurb>
-              <p>Art showcase</p>
-            </Blurb>
+            <p>FAQ</p>
           </Content>
         </Main>
       </Body>

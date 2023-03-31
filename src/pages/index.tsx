@@ -6,9 +6,6 @@ import Hero from '@/components/hero/Hero';
 import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
 import Main from '@/components/Main';
 import TestimonialCarousel from '@/components/testimonialCarousel/TestimonialCarousel';
-import Testimonials from '@/components/testimonials/Testimonials';
-import WorkHighlights from '@/components/workHighlights/WorkHighlights';
-import { fetchCurrentImages } from '@/functions/fetchCarousel';
 import { fetchHero } from '@/functions/fetchHero';
 import { fetchTestimonials } from '@/functions/fetchTestimonials';
 import { Hero as HeroType } from '@/types/hero';
@@ -18,14 +15,12 @@ import { useEffect, useState } from 'react';
 export default function Home() {
   const [heroInformation, setHeroInformation] = useState<HeroType[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([] as Testimonial[]);
-  const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
 
   useEffect(() => {
     try {
       fetchHero(setHeroInformation);
-      fetchCurrentImages(setCurrentImages);
       setInitialLoad(false);
       fetchTestimonials(setTestimonials);
     } catch (error) {
@@ -37,7 +32,7 @@ export default function Home() {
         setLoading(false);
       }, 1000);
     }
-  }, [setCurrentImages, initialLoad]);
+  }, [initialLoad]);
 
   return (
     <>

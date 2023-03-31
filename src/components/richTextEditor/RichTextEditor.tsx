@@ -84,6 +84,7 @@ const RichTextEditor = ({ setText }: RichTextEditorProps) => {
   return (
     <>
       <MenuBar editor={editor} />
+      <p className='pt-4 text-lg font-semibold'>Shift + Enter to add hard break</p>
       <div className='block w-full p-2 mt-4 text-lg border-2 rounded-lg border-lilac'>
         <EditorContent editor={editor} />
       </div>

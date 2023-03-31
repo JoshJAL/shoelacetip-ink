@@ -32,7 +32,8 @@ export default function DropdownMenu() {
         >
           <div className='py-1'>
             <DropdownMenuItem href={'/artist'}>Artist</DropdownMenuItem>
-            <DropdownMenuItem href={'/tattoos'}>Tattoos</DropdownMenuItem>
+            <DropdownMenuItem href={'/gallery'}>Gallery</DropdownMenuItem>
+            <DropdownMenuItem href={'/FAQ'}>FAQ</DropdownMenuItem>
           </div>
         </Menu.Items>
       </Transition>
