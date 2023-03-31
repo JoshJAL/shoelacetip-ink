@@ -5,6 +5,7 @@ import Header from '@/components/header/Header';
 import Hero from '@/components/hero/Hero';
 import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
 import Main from '@/components/Main';
+import TestimonialCarousel from '@/components/testimonialCarousel/TestimonialCarousel';
 import Testimonials from '@/components/testimonials/Testimonials';
 import WorkHighlights from '@/components/workHighlights/WorkHighlights';
 import { fetchCurrentImages } from '@/functions/fetchCarousel';
@@ -44,6 +45,7 @@ export default function Home() {
       <Body>
         <Header />
         <Main>
+          <div className='text-zinc-900'></div>
           <Content>
             {loading ? (
               <LoadingSpinner />
@@ -52,8 +54,7 @@ export default function Home() {
                 {heroInformation.map((hero) => (
                   <Hero heroInformation={hero} key={hero.id} />
                 ))}
-                <WorkHighlights slides={currentImages} />
-                <Testimonials testimonials={testimonials} />
+                <TestimonialCarousel testimonials={testimonials} />
               </>
             )}
           </Content>

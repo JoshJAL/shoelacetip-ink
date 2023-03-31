@@ -1,16 +1,24 @@
-import Image, { StaticImageData } from 'next/image';
-
 interface TestimonialProps {
   firstName: string | null;
   lastName: string | null;
   text: string;
   affiliation: string;
-  image: string;
+  image?: string;
+  additionalClasses?: string;
 }
 
-export default function IndividualTestimonial({ firstName, lastName, text, image, affiliation }: TestimonialProps) {
+export default function IndividualTestimonial({
+  firstName,
+  lastName,
+  text,
+  image,
+  affiliation,
+  additionalClasses
+}: TestimonialProps) {
   return (
-    <section className='flex flex-col p-7 bg-lilac rounded-xl md:w-[320px] w-full gap-6'>
+    <section
+      className={`flex flex-col w-full gap-6 p-7 bg-lilac rounded-xl ${additionalClasses ? additionalClasses : ''}`}
+    >
       <div className='flex flex-col items-start justify-start'>
         <p className='text-lg font-semibold '>
           <span className='text-5xl font-black text-customPink drop-shadow-[0_1.2px_1px_rgba(0,0,0,0.8)]'>&quot;</span>
@@ -31,7 +39,9 @@ export default function IndividualTestimonial({ firstName, lastName, text, image
           </div>
         </div>
       </div>
-      <img src={image} alt={`${firstName} ${lastName}'s Tattoo`} className='border rounded-lg border-customPink' />
+      {image && (
+        <img src={image} alt={`${firstName} ${lastName}'s Tattoo`} className='border rounded-lg border-customPink' />
+      )}
     </section>
   );
 }
