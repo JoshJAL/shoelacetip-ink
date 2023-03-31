@@ -10,7 +10,7 @@ interface Props {
   scrollInterval?: number;
 }
 
-function TestimonialCarousel({ testimonials: slides, autoScroll = true, scrollInterval = 3000 }: Props) {
+function TestimonialCarousel({ testimonials: slides, autoScroll = true, scrollInterval = 5000 }: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = useCallback(() => {
@@ -34,7 +34,7 @@ function TestimonialCarousel({ testimonials: slides, autoScroll = true, scrollIn
   return (
     <div className='max-w-xl md:h-[780px] h-[615px] w-full m-auto pb-12 relative group'>
       <Blurb>
-        <p className='font-bold md:text-[40px] text-[27px]'>What others are saying</p>
+        <p className='font-semibold md:text-[40px] text-[27px]'>What others are saying</p>
       </Blurb>
       <div
         className='w-full h-full duration-500 bg-center bg-cover border-2 rounded-2xl border-lilac'

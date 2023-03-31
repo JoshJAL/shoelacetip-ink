@@ -16,7 +16,9 @@ export default function Hero({ heroInformation }: HeroProps) {
       </div>
 
       <div className='py-4'>
-        <Blurb>{heroInformation.bio}</Blurb>
+        <Blurb>
+          <p dangerouslySetInnerHTML={{ __html: heroInformation.bio }} />
+        </Blurb>
         <div className='flex w-full flex-start'>
           <ul className='flex flex-col gap-2'>
             <li className='text-lg font-bold'>Rates:</li>

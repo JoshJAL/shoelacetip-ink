@@ -5,6 +5,7 @@ import InputTextEmailPassword from '../formComponents/InputTextEmailPassword';
 import Label from '../formComponents/Label';
 import SubmitButton from '../formComponents/SubmitButton';
 import TextArea from '../formComponents/TextArea';
+import RichTextEditor from '../richTextEditor/RichTextEditor';
 
 interface Props {
   currentHero: Hero;
@@ -25,9 +26,9 @@ export default function UpdateHeroContent({ currentHero }: Props) {
   }
 
   return (
-    <form className='flex flex-col w-full max-w-lg' onSubmit={(e) => handleSubmit(e)}>
+    <form className='flex flex-col w-full max-w-lg menu_bar' onSubmit={(e) => handleSubmit(e)}>
       <Label htmlFor='bio' text='Bio:' />
-      <TextArea required name='bio' value={bio} onChange={(e) => setBio(e.target.value)} />
+      <RichTextEditor setText={setBio} />
       <Label htmlFor='minimumRate' text='Minimum Rate:' />
       <InputTextEmailPassword
         required
