@@ -1,12 +1,15 @@
 import Blurb from '@/components/blurb/Blurb';
 import Body from '@/components/Body';
+import Button from '@/components/Button';
 import Content from '@/components/Content';
 import DefaultHead from '@/components/DefaultHead';
+import FancyLink from '@/components/fancyLink/FancyLink';
 import Header from '@/components/header/Header';
 import Main from '@/components/Main';
 import { getArtistPageData } from '@/functions/artistPage';
 import { Artist as ArtistType } from '@/types/artist';
 import { useState, useEffect } from 'react';
+import { IoLogoInstagram } from 'react-icons/io5';
 
 export default function Artist() {
   const [currentArtistPageInfo, setCurrentArtistPageInfo] = useState<ArtistType[]>([]);
@@ -29,7 +32,7 @@ export default function Artist() {
             {currentArtistPageInfo.map((currentInfo) => (
               <div className='flex flex-col items-center justify-center' key={currentInfo.id}>
                 <img
-                  className='md:w-[75%] w-full'
+                  className='md:w-[65%] w-full'
                   src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/artist/${currentInfo.headshot}`}
                   alt='Shoelacetip'
                 />
@@ -38,6 +41,21 @@ export default function Artist() {
                 </Blurb>
               </div>
             ))}
+            <div className='flex justify-evenly'>
+              <div className='flex'>
+                <FancyLink href='https://www.instagram.com/shoelacetip_ink/'>
+                  <IoLogoInstagram />
+                  <p>Instagram</p>
+                </FancyLink>
+              </div>
+              <div>
+                <Button
+                  text='Book Me'
+                  additionalClasses='font-semibold px-4 py-3'
+                  onClick={() => (window.location.href = '/contact')}
+                />
+              </div>
+            </div>
           </Content>
         </Main>
       </Body>
