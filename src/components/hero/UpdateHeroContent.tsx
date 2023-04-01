@@ -60,12 +60,17 @@ export default function UpdateHeroContent({ currentHero }: Props) {
 
     setCurrentBio(bio);
     setSubmitting(false);
+    // @ts-ignore
+    fileInputRef.current.value = null;
   }
 
   return (
     <form className='flex flex-col w-full max-w-lg menu_bar' onSubmit={(e) => handleSubmit(e)}>
       <Label htmlFor='image' text='Upload New Image:' />
-      <img src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/hero/${image}`} />
+      <img
+        src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/hero/${image}`}
+        alt='Hero Image'
+      />
       <input
         type={'file'}
         name={'image'}
