@@ -20,6 +20,7 @@ export default function UpdateArtistForm({ currentArtistPageInfo }: Props) {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setSubmitting(true);
 
     if (uploadedImage) {
       try {
@@ -28,7 +29,7 @@ export default function UpdateArtistForm({ currentArtistPageInfo }: Props) {
           .upload('artist/' + uploadedImage.name, uploadedImage, { cacheControl: '3600', upsert: false });
 
         if (error && error.message == 'The resource already exists') {
-          if (confirm('This image already exists. Do you want to replace it?')) {
+          if (confirm('This image already exists. Do you want to replace it?\nIf not rename it and try again.')) {
             const { error } = await supabase.storage
               .from('images')
               .update('artist/' + uploadedImage.name, uploadedImage, { cacheControl: '3600', upsert: true });
@@ -48,15 +49,13 @@ export default function UpdateArtistForm({ currentArtistPageInfo }: Props) {
         console.log(error);
       } finally {
         setImage(uploadedImage.name);
-        updateArtistPageData(bio, uploadedImage.name);
+        await updateArtistPageData(bio, uploadedImage.name);
       }
     } else {
-      updateArtistPageData(bio);
+      await updateArtistPageData(bio);
     }
 
-    setSubmitting(true);
     setCurrentBio(bio);
-    await updateArtistPageData(bio);
     setSubmitting(false);
     // @ts-ignore
     fileInputRef.current.value = null;

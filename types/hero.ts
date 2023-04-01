@@ -5,4 +5,5 @@ export type Hero = {
   minimum_rate: string;
   hourly_rate: string;
   disclaimer: string;
+  heroImage: string;
 };

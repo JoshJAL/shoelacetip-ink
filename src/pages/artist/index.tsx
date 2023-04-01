@@ -27,9 +27,15 @@ export default function Artist() {
         <Main>
           <Content>
             {currentArtistPageInfo.map((currentInfo) => (
-              <Blurb>
-                <p dangerouslySetInnerHTML={{ __html: currentInfo.bio }} />
-              </Blurb>
+              <div className='flex flex-col items-center justify-center'>
+                <img
+                  className='md:w-[75%] w-full'
+                  src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/artist/${currentInfo.headshot}`}
+                />
+                <Blurb>
+                  <p dangerouslySetInnerHTML={{ __html: currentInfo.bio }} />
+                </Blurb>
+              </div>
             ))}
           </Content>
         </Main>

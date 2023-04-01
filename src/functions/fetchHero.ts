@@ -7,9 +7,16 @@ export async function fetchHero(setHeroInformation: Dispatch<SetStateAction<Hero
   setHeroInformation(data! as Hero[]);
 }
 
-export async function updateHero(bio: string, disclaimer: string) {
+export async function updateHero(bio: string, disclaimer: string, heroImage?: string) {
   bio = bio.trim();
   disclaimer = disclaimer.trim();
+
+  if (heroImage) {
+    const { error } = await supabase.from('hero').update({ bio, disclaimer, heroImage }).eq('id', 1);
+    if (error) {
+      console.log(error);
+    }
+  }
   const { error } = await supabase.from('hero').update({ bio, disclaimer }).eq('id', 1);
 
   if (error) {
