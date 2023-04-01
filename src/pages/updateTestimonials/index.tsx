@@ -39,11 +39,13 @@ export default function UpdateTestimonials() {
             </label>
             {view &&
               currentTestimonials.map((testimonial) => (
-                <UpdateTestimonialsForm
-                  currentTestimonial={testimonial}
-                  key={testimonial.id}
-                  setCurrentTestimonials={setCurrentTestimonials}
-                />
+                <div className='p-4 mb-4 border-2 rounded-lg border-lilac'>
+                  <UpdateTestimonialsForm
+                    currentTestimonial={testimonial}
+                    key={testimonial.id}
+                    setCurrentTestimonials={setCurrentTestimonials}
+                  />
+                </div>
               ))}
             <AddTestimonialForm
               currentTestimonials={currentTestimonials}

@@ -65,12 +65,15 @@ export default function UpdateHeroContent({ currentHero }: Props) {
   }
 
   return (
-    <form className='flex flex-col w-full max-w-lg menu_bar' onSubmit={(e) => handleSubmit(e)}>
+    <form className='flex flex-col w-full menu_bar' onSubmit={(e) => handleSubmit(e)}>
       <Label htmlFor='image' text='Upload New Image:' />
-      <img
-        src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/hero/${image}`}
-        alt='Hero Image'
-      />
+      <div className='flex items-center justify-center w-full'>
+        <img
+          src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/hero/${image}`}
+          alt='Hero Image'
+          className='w-[60%]'
+        />
+      </div>
       <input
         type={'file'}
         name={'image'}
