@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Button from '../Button';
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
 import WormIcon from '../wormIcon/WormIcon';

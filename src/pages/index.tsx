@@ -30,7 +30,7 @@ export default function Home() {
     if (!initialLoad) {
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 1500);
     }
   }, [initialLoad]);
 
@@ -40,7 +40,6 @@ export default function Home() {
       <Body>
         <Header />
         <Main>
-          <div className='text-zinc-900'></div>
           <Content>
             {loading ? (
               <LoadingSpinner />

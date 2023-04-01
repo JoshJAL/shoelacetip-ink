@@ -15,13 +15,9 @@ import {
   FaUnlink
 } from 'react-icons/fa';
 import Underline from '@tiptap/extension-underline';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 const MenuBar = ({ editor }: { editor: any }) => {
-  if (!editor) {
-    return null;
-  }
-
   const setLink = useCallback(() => {
     const previousUrl = editor.getAttributes('link').href;
     const url = window.prompt('URL', previousUrl);
@@ -40,6 +36,10 @@ const MenuBar = ({ editor }: { editor: any }) => {
     // update link
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
   }, [editor]);
+
+  if (!editor) {
+    return null;
+  }
 
   if (!editor) {
     return null;
