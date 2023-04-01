@@ -26,7 +26,7 @@ export default function FAQ() {
         <Header />
         <Main>
           <Content>
-            <div className='flex flex-col items-center justify-center w-full'>
+            <div className='flex flex-col items-center justify-center w-full text-center'>
               <p className='text-xl font-semibold'>Shop minimum is $95, $130/hr rate for all tattoos</p>
               <p>
                 <i className='text-xl font-bold'>Cash payment is preferred! Zelle transfers will also be accepted</i>
