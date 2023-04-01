@@ -88,6 +88,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
         <FaListOl />
       </RichTextButton>
       <button
+        type='button'
         onClick={setLink}
         className={`font-semibold bg-lilac px-2 py-1 hover:bg-lilacHover  ${
           editor.isActive('link') ? 'bg-lilacHover' : ''
@@ -96,6 +97,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
         <FaLink />
       </button>
       <button
+        type='button'
         className='px-2 py-1 font-semibold bg-lilac hover:bg-lilacHover'
         onClick={() => editor.chain().focus().unsetLink().run()}
         disabled={!editor.isActive('link')}
