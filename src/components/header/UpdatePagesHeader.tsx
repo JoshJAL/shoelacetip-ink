@@ -16,6 +16,7 @@ export default function UpdatePagesHeader() {
             <HeaderLink href={'/updateHero'}>Update Hero</HeaderLink>
             <HeaderLink href={'/updateTestimonials'}>Update Testimonials</HeaderLink>
             <HeaderLink href={'/updateArtist'}>Update Artist</HeaderLink>
+            <HeaderLink href={'/updateFAQ'}>Update FAQ</HeaderLink>
           </div>
           <div className='flex-1'></div>
           <div className='md:hidden'>
