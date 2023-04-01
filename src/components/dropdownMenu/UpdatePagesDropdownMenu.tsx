@@ -32,8 +32,8 @@ export default function UpdatePagesDropdownMenu() {
         >
           <div className='py-1'>
             <DropdownMenuItem href={'/updateHero'}>Update Hero</DropdownMenuItem>
-            <DropdownMenuItem href={'/updateCarousel'}>Update Carousel</DropdownMenuItem>
             <DropdownMenuItem href={'/updateTestimonials'}>Update Testimonials</DropdownMenuItem>
+            <DropdownMenuItem href={'/updateArtist'}>Update Artist</DropdownMenuItem>
           </div>
         </Menu.Items>
       </Transition>

@@ -1,7 +1,7 @@
 import Body from '@/components/Body';
 import Content from '@/components/Content';
 import DefaultHead from '@/components/DefaultHead';
-import Header from '@/components/header/Header';
+import UpdatePagesHeader from '@/components/header/UpdatePagesHeader';
 import Main from '@/components/Main';
 import UpdateArtistForm from '@/components/updateArtistForm/UpdateArtistForm';
 import { getArtistPageData } from '@/functions/artistPage';
@@ -23,7 +23,7 @@ export default function Tattoos() {
     <>
       <DefaultHead />
       <Body>
-        <Header />
+        <UpdatePagesHeader />
         <Main>
           <Content>
             {currentArtistPageInfo.map((currentArtist) => (

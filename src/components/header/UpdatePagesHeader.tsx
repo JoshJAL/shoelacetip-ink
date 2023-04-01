@@ -14,8 +14,8 @@ export default function UpdatePagesHeader() {
           </a>
           <div className='items-center hidden gap-6 md:flex'>
             <HeaderLink href={'/updateHero'}>Update Hero</HeaderLink>
-            <HeaderLink href={'/updateCarousel'}>Update Carousel</HeaderLink>
             <HeaderLink href={'/updateTestimonials'}>Update Testimonials</HeaderLink>
+            <HeaderLink href={'/updateArtist'}>Update Artist</HeaderLink>
           </div>
           <div className='flex-1'></div>
           <div className='md:hidden'>

@@ -1,10 +1,11 @@
 interface SubmitButtonProps {
   text: string;
+  disabled?: boolean;
 }
 
-export default function SubmitButton({ text }: SubmitButtonProps) {
+export default function SubmitButton({ text, disabled = false }: SubmitButtonProps) {
   return (
-    <button type='submit' className='px-3 py-2 rounded-lg bg-lilac hover:bg-lilacHover'>
+    <button disabled={disabled} type='submit' className='px-3 py-2 rounded-lg bg-lilac hover:bg-lilacHover'>
       {text}
     </button>
   );
