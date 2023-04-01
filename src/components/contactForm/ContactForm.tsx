@@ -14,9 +14,9 @@ function ContactForm() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     window.open(
-      `mailto:joshuaalevine3@gmail.com?subject=Message from ${firstName} ${lastName} about ${
-        service === 'artwork' ? 'an ' + service : 'a ' + service
-      }&body=${message}`
+      `mailto:sltink.booking@gmail.com?subject=Message from ${firstName} ${lastName} ${
+        service === 'question' ? 'has' : 'about'
+      } ${service === 'artwork' ? 'an ' + service : 'a ' + service}&body=${message}`
     );
     setFirstName('');
     setLastName('');

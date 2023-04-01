@@ -8,6 +8,16 @@
   margin: 0;
 }
 
+a {
+  color: #92b3fa;
+  text-decoration: none;
+
+  &:hover {
+    color: #6193ff;
+    text-decoration: underline;
+  }
+}
+
 .ProseMirror {
   &:focus {
     outline: none;
@@ -15,6 +25,10 @@
 
   > * + * {
     margin-top: 0.75em;
+  }
+
+  a {
+    color: #68cef8;
   }
 
   ul {

@@ -19,8 +19,8 @@ export default function HeaderLink({ href, children }: HeaderLinkProps) {
   return (
     <a
       href={href}
-      className={`inline-flex items-center gap-1  ${
-        active ? 'font-extrabold underline underline-offset-2' : 'font-semibold hover:underline underline-offset-2'
+      className={`inline-flex items-center gap-1 text-zinc-900 hover:text-zinc-900 ${
+        active ? 'font-bold underline underline-offset-2' : 'font-semibold hover:underline underline-offset-2'
       }`}
     >
       {children}

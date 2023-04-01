@@ -1,10 +1,46 @@
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import RichTextButton from './RichTextButton';
-import { FaBold, FaItalic, FaListOl, FaListUl, FaRedo, FaStrikethrough, FaUnderline, FaUndo } from 'react-icons/fa';
+import Link from '@tiptap/extension-link';
+import {
+  FaBold,
+  FaItalic,
+  FaLink,
+  FaListOl,
+  FaListUl,
+  FaRedo,
+  FaStrikethrough,
+  FaUnderline,
+  FaUndo,
+  FaUnlink
+} from 'react-icons/fa';
 import Underline from '@tiptap/extension-underline';
+import { useCallback, useState } from 'react';
 
 const MenuBar = ({ editor }: { editor: any }) => {
+  if (!editor) {
+    return null;
+  }
+
+  const setLink = useCallback(() => {
+    const previousUrl = editor.getAttributes('link').href;
+    const url = window.prompt('URL', previousUrl);
+
+    // cancelled
+    if (url === null) {
+      return;
+    }
+
+    // empty
+    if (url === '') {
+      editor.chain().focus().extendMarkRange('link').unsetLink().run();
+      return;
+    }
+
+    // update link
+    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+  }, [editor]);
+
   if (!editor) {
     return null;
   }
@@ -51,6 +87,21 @@ const MenuBar = ({ editor }: { editor: any }) => {
       >
         <FaListOl />
       </RichTextButton>
+      <button
+        onClick={setLink}
+        className={`font-semibold bg-lilac px-2 py-1 hover:bg-lilacHover  ${
+          editor.isActive('link') ? 'bg-lilacHover' : ''
+        }`}
+      >
+        <FaLink />
+      </button>
+      <button
+        className='px-2 py-1 font-semibold bg-lilac hover:bg-lilacHover'
+        onClick={() => editor.chain().focus().unsetLink().run()}
+        disabled={!editor.isActive('link')}
+      >
+        <FaUnlink />
+      </button>
       <RichTextButton
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editor.can().chain().focus().undo().run()}
@@ -73,7 +124,7 @@ interface RichTextEditorProps {
 
 const RichTextEditor = ({ setText }: RichTextEditorProps) => {
   const editor = useEditor({
-    extensions: [StarterKit, Underline],
+    extensions: [StarterKit, Underline, Link],
     content: ``,
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();

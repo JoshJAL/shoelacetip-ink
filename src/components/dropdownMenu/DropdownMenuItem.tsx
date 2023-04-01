@@ -15,7 +15,11 @@ export default function DropdownMenuItem({ href, children }: DropdownMenuItemPro
       {(active) => (
         <a
           href={href}
-          className={classNames(active ? 'bg-lightOlive' : '', 'block px-4 py-2 text-sm hover:bg-darkOlive')}
+          className={classNames(
+            active ? 'bg-lightOlive' : '',
+            'block px-4 py-2 text-sm hover:bg-darkOlive',
+            'text-zinc-900 hover:text-zinc-900 hover:no-underline'
+          )}
         >
           {children}
         </a>
