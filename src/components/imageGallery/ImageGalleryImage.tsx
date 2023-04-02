@@ -11,7 +11,6 @@ export default function ImageGalleryImage({ galleryItem }: Props) {
       <BlurImage
         alt={galleryItem.title}
         imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/gallery/${galleryItem.image}`}
-        additionalClassNames='group-hover:opacity-75'
       />
     </div>
   );
