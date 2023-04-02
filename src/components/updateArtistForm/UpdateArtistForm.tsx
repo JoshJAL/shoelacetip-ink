@@ -19,28 +19,35 @@ export default function UpdateArtistForm({ currentArtistPageInfo }: Props) {
   const fileInputRef = useRef(null);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
 
+  function appendNumberToFileName(fileName: string) {
+    const fileNameWithoutExtension = fileName.split('.')[0];
+    const fileExtension = fileName.split('.')[1];
+    const newFileName = fileNameWithoutExtension + '-' + Date.now() + '.' + fileExtension;
+    return newFileName;
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
 
     if (uploadedImage) {
+      let fileName = uploadedImage.name;
       try {
         const { error } = await supabase.storage
           .from('images')
-          .upload('artist/' + uploadedImage.name, uploadedImage, { cacheControl: '3600', upsert: false });
+          .upload('artist/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
 
         if (error && error.message == 'The resource already exists') {
-          if (confirm('This image already exists. Do you want to replace it?\nIf not rename it and try again.')) {
-            const { error } = await supabase.storage
-              .from('images')
-              .update('artist/' + uploadedImage.name, uploadedImage, { cacheControl: '3600', upsert: true });
+          fileName = appendNumberToFileName(uploadedImage.name);
+          const { error } = await supabase.storage
+            .from('images')
+            .upload('artist/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
 
-            if (error) {
-              console.log(error);
-            }
-
-            setImage(uploadedImage.name);
+          if (error) {
+            console.log(error);
           }
+
+          setImage(fileName);
         }
 
         if (error && error.message !== 'The resource already exists') {
@@ -49,8 +56,8 @@ export default function UpdateArtistForm({ currentArtistPageInfo }: Props) {
       } catch (error) {
         console.log(error);
       } finally {
-        setImage(uploadedImage.name);
-        await updateArtistPageData(bio, uploadedImage.name);
+        setImage(fileName);
+        await updateArtistPageData(bio, fileName);
       }
     } else {
       await updateArtistPageData(bio);

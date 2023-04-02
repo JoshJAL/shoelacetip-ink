@@ -21,27 +21,32 @@ export default function UpdateHeroContent({ currentHero }: Props) {
   const fileInputRef = useRef(null);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
 
+  function appendNumberToFileName(fileName: string) {
+    const fileNameWithoutExtension = fileName.split('.')[0];
+    const fileExtension = fileName.split('.')[1];
+    const newFileName = fileNameWithoutExtension + '-' + Date.now() + '.' + fileExtension;
+    return newFileName;
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
 
     if (uploadedImage) {
+      let fileName = uploadedImage.name;
       try {
         const { error } = await supabase.storage
           .from('images')
-          .upload('hero/' + uploadedImage.name, uploadedImage, { cacheControl: '3600', upsert: false });
+          .upload('hero/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
 
         if (error && error.message == 'The resource already exists') {
-          if (confirm('This image already exists. Do you want to replace it?\nIf not rename it and try again.')) {
-            const { error } = await supabase.storage
-              .from('images')
-              .update('hero/' + uploadedImage.name, uploadedImage, { cacheControl: '3600', upsert: true });
+          fileName = appendNumberToFileName(uploadedImage.name);
+          const { error } = await supabase.storage
+            .from('images')
+            .upload('hero/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
 
-            if (error) {
-              console.log(error);
-            }
-
-            setImage(uploadedImage.name);
+          if (error) {
+            console.log(error);
           }
         }
 
@@ -51,8 +56,8 @@ export default function UpdateHeroContent({ currentHero }: Props) {
       } catch (error) {
         console.log(error);
       } finally {
-        setImage(uploadedImage.name);
-        updateHeroFunction(bio, disclaimer, uploadedImage.name);
+        setImage(fileName);
+        updateHeroFunction(bio, disclaimer, fileName);
       }
     } else {
       await updateHeroFunction(bio, disclaimer);

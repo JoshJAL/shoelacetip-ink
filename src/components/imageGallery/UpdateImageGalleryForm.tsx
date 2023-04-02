@@ -22,6 +22,13 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }:
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [deleting, setDeleting] = useState(false);
 
+  function appendNumberToFileName(fileName: string) {
+    const fileNameWithoutExtension = fileName.split('.')[0];
+    const fileExtension = fileName.split('.')[1];
+    const newFileName = fileNameWithoutExtension + '-' + Date.now() + '.' + fileExtension;
+    return newFileName;
+  }
+
   async function handleDelete(index: number) {
     if (!confirm('Are you sure you want to delete this gallery image?')) return;
     setDeleting(true);
@@ -39,10 +46,22 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }:
     e.preventDefault();
     setUpdating(true);
     if (uploadedImage) {
+      let fileName = uploadedImage.name;
       try {
         const { error } = await supabase.storage
           .from('images')
-          .upload('gallery/' + uploadedImage.name, uploadedImage, { cacheControl: '3600', upsert: false });
+          .upload('gallery/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
+
+        if (error && error.message == 'The resource already exists') {
+          fileName = appendNumberToFileName(uploadedImage.name);
+          const { error } = await supabase.storage
+            .from('images')
+            .upload('gallery/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
+
+          if (error) {
+            console.log(error);
+          }
+        }
 
         if (error && error.message !== 'The resource already exists') {
           alert(error.message + '\nThere was an error uploading your image.\nPlease try again.');
@@ -50,13 +69,13 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }:
       } catch (error) {
         console.log(error);
       } finally {
-        setImage(uploadedImage.name);
+        setImage(fileName);
 
         const { error } = await supabase
           .from('gallery')
           .update({
             title: title.trim(),
-            image: uploadedImage.name,
+            image: fileName,
             description: description.trim()
           })
           .eq('id', currentGallery.id);
