@@ -1,5 +1,6 @@
 import { Hero as HeroType } from '@/types/hero';
 import Blurb from '../blurb/Blurb';
+import BlurImage from '../blurImage/BlurImage';
 
 interface HeroProps {
   heroInformation: HeroType;
@@ -8,9 +9,9 @@ interface HeroProps {
 export default function Hero({ heroInformation }: HeroProps) {
   return (
     <section className='flex flex-col items-center justify-center w-full'>
-      <img
-        src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/hero/${heroInformation.heroImage}`}
-        className='md:w-[60%] w-full'
+      <BlurImage
+        imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/hero/${heroInformation.heroImage}`}
+        additionalClassNames='md:w-[60%] w-full'
         alt='Hero Image'
       />
 

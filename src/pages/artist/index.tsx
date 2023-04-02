@@ -1,4 +1,5 @@
 import Blurb from '@/components/blurb/Blurb';
+import BlurImage from '@/components/blurImage/BlurImage';
 import Body from '@/components/Body';
 import Button from '@/components/Button';
 import Content from '@/components/Content';
@@ -21,7 +22,6 @@ export default function Artist() {
     try {
       getArtistPageData(setCurrentArtistPageInfo);
       setInitialLoad(false);
-      console.log(initialLoad);
     } catch (error) {
       console.log(error);
     }
@@ -39,40 +39,39 @@ export default function Artist() {
       <Body>
         <Header />
         <Main>
-          <Content>
-            {loading ? (
+          <Content additionalClasses='relative'>
+            <div className={`${loading ? 'block' : 'hidden'} absolute h-screen left-[50%] right-[50%]`}>
               <LoadingSpinner />
-            ) : (
-              <>
-                {currentArtistPageInfo.map((currentInfo) => (
-                  <div className='flex flex-col items-center justify-center' key={currentInfo.id}>
-                    <img
-                      className='md:w-[65%] w-full'
-                      src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/artist/${currentInfo.headshot}`}
-                      alt='Shoelacetip'
-                    />
-                    <Blurb>
-                      <p dangerouslySetInnerHTML={{ __html: currentInfo.bio }} />
-                    </Blurb>
-                  </div>
-                ))}
-                <div className='flex justify-evenly'>
-                  <div className='flex'>
-                    <FancyLink href='https://www.instagram.com/shoelacetip_ink/'>
-                      <IoLogoInstagram />
-                      <p>Instagram</p>
-                    </FancyLink>
-                  </div>
-                  <div>
-                    <Button
-                      text='Book Me'
-                      additionalClasses='font-semibold px-4 py-3'
-                      onClick={() => (window.location.href = '/contact')}
-                    />
-                  </div>
+            </div>
+            <div className={`${loading ? 'hidden' : 'flex'} flex-col`}>
+              {currentArtistPageInfo.map((currentInfo) => (
+                <div className={`flex flex-col items-center justify-center`} key={currentInfo.id}>
+                  <BlurImage
+                    additionalClassNames='md:w-[65%] w-full'
+                    imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/artist/${currentInfo.headshot}`}
+                    alt='Shoelacetip'
+                  />
+                  <Blurb>
+                    <p dangerouslySetInnerHTML={{ __html: currentInfo.bio }} />
+                  </Blurb>
                 </div>
-              </>
-            )}
+              ))}
+              <div className='flex justify-evenly'>
+                <div className='flex'>
+                  <FancyLink href='https://www.instagram.com/shoelacetip_ink/'>
+                    <IoLogoInstagram />
+                    <p>Instagram</p>
+                  </FancyLink>
+                </div>
+                <div>
+                  <Button
+                    text='Book Me'
+                    additionalClasses='font-semibold px-4 py-3'
+                    onClick={() => (window.location.href = '/contact')}
+                  />
+                </div>
+              </div>
+            </div>
           </Content>
         </Main>
       </Body>

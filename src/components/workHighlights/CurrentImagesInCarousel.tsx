@@ -1,5 +1,6 @@
 import supabase from '@/utils/supabase';
 import { useState } from 'react';
+import BlurImage from '../blurImage/BlurImage';
 
 interface Props {
   currentImages: string[];
@@ -50,10 +51,10 @@ export default function CurrentImagesInCarousel({ currentImages, setCurrentImage
         {currentImages.map((image, index) => {
           return (
             <div className='relative flex flex-col items-center w-full group' key={index}>
-              <img
-                src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${image}`}
+              <BlurImage
+                imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${image}`}
                 alt={`Carousel Image ${index}`}
-                className='w-full mt-2 border rounded-lg border-lilac'
+                additionalClassNames='w-full mt-2 border rounded-lg border-lilac'
               />
               <button
                 onClick={(e) => deleteImage(index, e)}

@@ -7,6 +7,7 @@ import InputTextEmailPassword from '../formComponents/InputTextEmailPassword';
 import Label from '../formComponents/Label';
 import SubmitButton from '../formComponents/SubmitButton';
 import TextArea from '../formComponents/TextArea';
+import BlurImage from '../blurImage/BlurImage';
 
 interface Props {
   currentTestimonial: Testimonial;
@@ -116,9 +117,9 @@ export default function UpdateTestimonialsForm({ currentTestimonial, setCurrentT
           onChange={(e) => setAffiliation(e.target.value)}
         />
         <Label htmlFor='image' text='Current Image:' />
-        <img
-          src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/testimonials/${image}`}
-          className='w-[75%] border-2 border-lilac rounded-lg mb-4'
+        <BlurImage
+          imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/testimonials/${image}`}
+          additionalClassNames='w-[75%] border-2 border-lilac rounded-lg mb-4'
           alt={`Testimonial image for ${firstName} ${lastName}`}
         />
         <Label htmlFor='image' text='Upload New Image:' />

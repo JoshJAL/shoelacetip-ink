@@ -1,3 +1,5 @@
+import BlurImage from '../blurImage/BlurImage';
+
 interface TestimonialProps {
   firstName: string | null;
   lastName: string | null;
@@ -40,7 +42,11 @@ export default function IndividualTestimonial({
         </div>
       </div>
       {image && (
-        <img src={image} alt={`${firstName} ${lastName}'s Tattoo`} className='border rounded-lg border-customPink' />
+        <BlurImage
+          imageSource={image}
+          alt={`${firstName} ${lastName}'s Tattoo`}
+          additionalClassNames='border rounded-lg border-customPink'
+        />
       )}
     </section>
   );

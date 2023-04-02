@@ -4,20 +4,30 @@ import DefaultHead from '@/components/DefaultHead';
 import SingleFAQ from '@/components/FAQ/SingleFAQ';
 import Main from '@/components/Main';
 import Header from '@/components/header/Header';
+import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
 import { fetchFAQs } from '@/functions/FAQ';
 import { FAQ as FAQType } from '@/types/FAQ';
 import { useEffect, useState } from 'react';
 
 export default function FAQ() {
   const [currentFAQArray, setCurrentFAQArray] = useState<FAQType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [initialLoad, setInitialLoad] = useState<boolean>(true);
 
   useEffect(() => {
     try {
       fetchFAQs(setCurrentFAQArray);
+      setInitialLoad(false);
     } catch (error) {
       console.log(error);
     }
-  }, [setCurrentFAQArray]);
+
+    if (!initialLoad) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }
+  }, [setCurrentFAQArray, initialLoad]);
 
   return (
     <>
@@ -26,16 +36,21 @@ export default function FAQ() {
         <Header />
         <Main>
           <Content>
-            <div className='flex flex-col items-center justify-center w-full text-center'>
-              <p className='text-xl font-semibold'>Shop minimum is $95, $130/hr rate for all tattoos</p>
-              <p>
-                <i className='text-xl font-bold'>Cash payment is preferred! Zelle transfers will also be accepted</i>
-              </p>
-              <div>✧✧✧</div>
+            <div className={`${loading ? 'block' : 'hidden'} absolute h-screen left-[50%] right-[50%]`}>
+              <LoadingSpinner />
             </div>
-            {currentFAQArray.map((currentFAQ, index) => (
-              <SingleFAQ currentFAQ={currentFAQ} key={index} />
-            ))}
+            <div className={`${loading ? 'hidden' : 'flex'} flex-col`}>
+              <div className='flex flex-col items-center justify-center w-full text-center'>
+                <p className='text-xl font-semibold'>Shop minimum is $95, $130/hr rate for all tattoos</p>
+                <p>
+                  <i className='text-xl font-bold'>Cash payment is preferred! Zelle transfers will also be accepted</i>
+                </p>
+                <div>✧✧✧</div>
+              </div>
+              {currentFAQArray.map((currentFAQ, index) => (
+                <SingleFAQ currentFAQ={currentFAQ} key={index} />
+              ))}
+            </div>
           </Content>
         </Main>
       </Body>

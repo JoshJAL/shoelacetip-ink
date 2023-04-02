@@ -1,5 +1,6 @@
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import { useState, useEffect, useCallback } from 'react';
+import BlurImage from '../blurImage/BlurImage';
 
 interface WorkHighlightsProps {
   autoScroll?: boolean;
@@ -59,8 +60,8 @@ export default function WorkHighlights({ autoScroll = true, scrollInterval = 300
               index === currentSlide ? 'scale-[2.4] mx-3' : ''
             } transition-all duration-200 ease-in-out`}
           >
-            <img
-              src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${slide}`}
+            <BlurImage
+              imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${slide}`}
               alt='Rotating image preview'
             />
           </div>

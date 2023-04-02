@@ -1,12 +1,12 @@
 import { updateHero as updateHeroFunction } from '@/functions/fetchHero';
 import { Hero } from '@/types/hero';
 import { useState, useRef } from 'react';
-import InputTextEmailPassword from '../formComponents/InputTextEmailPassword';
 import Label from '../formComponents/Label';
 import SubmitButton from '../formComponents/SubmitButton';
 import TextArea from '../formComponents/TextArea';
 import RichTextEditor from '../richTextEditor/RichTextEditor';
 import supabase from '@/utils/supabase';
+import BlurImage from '../blurImage/BlurImage';
 
 interface Props {
   currentHero: Hero;
@@ -68,10 +68,10 @@ export default function UpdateHeroContent({ currentHero }: Props) {
     <form className='flex flex-col w-full menu_bar' onSubmit={(e) => handleSubmit(e)}>
       <Label htmlFor='image' text='Upload New Image:' />
       <div className='flex items-center justify-center w-full'>
-        <img
-          src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/hero/${image}`}
+        <BlurImage
+          imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/hero/${image}`}
           alt='Hero Image'
-          className='w-[60%]'
+          additionalClassNames='w-[60%]'
         />
       </div>
       <input

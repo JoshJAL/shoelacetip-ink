@@ -21,8 +21,8 @@ export default function Home() {
   useEffect(() => {
     try {
       fetchHero(setHeroInformation);
-      setInitialLoad(false);
       fetchTestimonials(setTestimonials);
+      setInitialLoad(false);
     } catch (error) {
       console.log(error);
     }
@@ -41,16 +41,15 @@ export default function Home() {
         <Header />
         <Main>
           <Content>
-            {loading ? (
+            <div className={`${loading ? 'block' : 'hidden'} absolute h-screen left-[50%] right-[50%]`}>
               <LoadingSpinner />
-            ) : (
-              <>
-                {heroInformation.map((hero) => (
-                  <Hero heroInformation={hero} key={hero.id} />
-                ))}
-                <TestimonialCarousel testimonials={testimonials} />
-              </>
-            )}
+            </div>
+            <div className={`${loading ? 'hidden' : 'flex'} flex-col`}>
+              {heroInformation.map((hero) => (
+                <Hero heroInformation={hero} key={hero.id} />
+              ))}
+              {loading ? <div>Loading...</div> : <TestimonialCarousel testimonials={testimonials} />}
+            </div>
           </Content>
         </Main>
       </Body>

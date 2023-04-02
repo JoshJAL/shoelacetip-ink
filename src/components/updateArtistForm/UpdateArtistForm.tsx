@@ -5,6 +5,7 @@ import RichTextEditor from '../richTextEditor/RichTextEditor';
 import { useState, useRef } from 'react';
 import { Artist } from '@/types/artist';
 import supabase from '@/utils/supabase';
+import BlurImage from '../blurImage/BlurImage';
 
 interface Props {
   currentArtistPageInfo: Artist;
@@ -64,9 +65,9 @@ export default function UpdateArtistForm({ currentArtistPageInfo }: Props) {
   return (
     <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col w-full'>
       <Label htmlFor='image' text='Current Image:' />
-      <img
-        src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/artist/${image}`}
-        className='w-[75%] border-2 border-lilac rounded-lg mb-4'
+      <BlurImage
+        imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/artist/${image}`}
+        additionalClassNames='w-[75%] border-2 border-lilac rounded-lg mb-4'
         alt={`Artist Headshot`}
       />
       <Label htmlFor='bio' text='Artist Bio:' />

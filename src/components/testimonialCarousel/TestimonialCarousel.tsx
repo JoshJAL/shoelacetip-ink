@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import IndividualTestimonial from '../testimonials/IndividualTestimonial';
 import Blurb from '../blurb/Blurb';
+import BlurImage from '../blurImage/BlurImage';
 
 interface Props {
   testimonials: Testimonial[];
@@ -73,8 +74,8 @@ function TestimonialCarousel({ testimonials: slides, autoScroll = true, scrollIn
               index === currentSlide ? 'scale-[2.4] mx-3' : ''
             } transition-all duration-200 ease-in-out`}
           >
-            <img
-              src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/testimonials/${slide.image}`}
+            <BlurImage
+              imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/testimonials/${slide.image}`}
               alt='Rotating image preview'
             />
           </div>
