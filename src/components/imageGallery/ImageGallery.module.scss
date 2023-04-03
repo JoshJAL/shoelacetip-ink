@@ -27,10 +27,23 @@
 
   @media screen and (max-width: 768px) {
     columns: 2;
+
+    & .images {
+      &:hover {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
   }
 
   @media screen and (max-width: 480px) {
     columns: 1;
+    & .images {
+      &:hover {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
   }
 }
 
