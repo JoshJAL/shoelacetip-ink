@@ -25,7 +25,7 @@ export default function FAQ() {
     if (!initialLoad) {
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 500);
     }
   }, [setCurrentFAQArray, initialLoad]);
 

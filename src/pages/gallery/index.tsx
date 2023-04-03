@@ -25,7 +25,7 @@ export default function Tattoos() {
     if (!initialLoad) {
       setTimeout(() => {
         setLoading(false);
-      }, 1200);
+      }, 700);
     }
   }, [setGallery, initialLoad]);
 

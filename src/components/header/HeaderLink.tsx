@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 interface HeaderLinkProps {
@@ -17,13 +18,13 @@ export default function HeaderLink({ href, children }: HeaderLinkProps) {
   }, [href]);
 
   return (
-    <a
+    <Link
       href={href}
       className={`inline-flex items-center gap-1 text-zinc-900 hover:text-zinc-900 ${
         active ? 'font-bold underline underline-offset-2' : 'font-semibold hover:underline underline-offset-2'
       }`}
     >
       {children}
-    </a>
+    </Link>
   );
 }

@@ -29,7 +29,7 @@ export default function Artist() {
     if (!initialLoad) {
       setTimeout(() => {
         setLoading(false);
-      }, 1800);
+      }, 500);
     }
   }, [initialLoad]);
 

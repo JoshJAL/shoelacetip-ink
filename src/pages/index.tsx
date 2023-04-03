@@ -30,7 +30,7 @@ export default function Home() {
     if (!initialLoad) {
       setTimeout(() => {
         setLoading(false);
-      }, 1500);
+      }, 800);
     }
   }, [initialLoad]);
 
