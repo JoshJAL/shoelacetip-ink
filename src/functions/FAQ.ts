@@ -3,6 +3,8 @@ import supabase from '@/utils/supabase';
 
 export const fetchFAQs = async (setFAQs: React.Dispatch<React.SetStateAction<FAQ[]>>) => {
   let { data } = await supabase.from('faq').select('*');
+  if (!data) return;
+  data = data?.sort((a, b) => a.id - b.id);
   setFAQs(data! as FAQ[]);
 };
 
