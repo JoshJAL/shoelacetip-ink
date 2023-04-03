@@ -1,9 +1,8 @@
-import ImageGalleryImage from './ImageGalleryImage';
 import { Gallery } from '@/types/gallery';
-import styles from './ImageGallery.module.scss';
 import { useState } from 'react';
-import BlurImage from '../blurImage/BlurImage';
 import { IoClose } from 'react-icons/io5';
+import BlurImage from '../blurImage/BlurImage';
+import styles from './ImageGallery.module.scss';
 
 interface ImageGalleryProps {
   gallery: Gallery[];
@@ -48,7 +47,11 @@ export default function ImageGallery({ gallery }: ImageGalleryProps) {
             key={galleryItem.id}
             onClick={() => getImage(galleryItem.image, galleryItem.description, galleryItem.description)}
           >
-            <ImageGalleryImage galleryItem={galleryItem} />
+            <BlurImage
+              alt={galleryItem.title}
+              imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/gallery/${galleryItem.image}`}
+              additionalClassNames='rounded-lg'
+            />
           </div>
         ))}
       </div>
