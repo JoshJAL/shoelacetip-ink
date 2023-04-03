@@ -24,7 +24,7 @@ export default function ImageGallery({ gallery }: ImageGalleryProps) {
   return (
     <>
       <div
-        className={`w-full max-w-[100%] h-screen max-h-[100%] fixed top-0 left-0 flex flex-col items-center justify-center bg-black bg-opacity-60 overflow-hidden z-50 transition-all duration-300 ease-in-out
+        className={`w-full max-w-[100%] h-screen overflow-y-scroll max-h-[100%] fixed top-0 left-0 flex flex-col items-center justify-center bg-black bg-opacity-60 overflow-hidden z-50 transition-all duration-300 ease-in-out
           ${modal ? 'scale-100 opacity-1 visible' : 'invisible scale-0 opacity-0'}`}
       >
         <BlurImage
