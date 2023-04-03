@@ -1,5 +1,5 @@
 import { Testimonial } from '@/types/testimonials';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, TouchEvent } from 'react';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import IndividualTestimonial from '../testimonials/IndividualTestimonial';
 import Blurb from '../blurb/Blurb';
@@ -13,6 +13,31 @@ interface Props {
 
 function TestimonialCarousel({ testimonials: slides, autoScroll = true, scrollInterval = 5000 }: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // the required distance between touchStart and touchEnd to be detected as a swipe
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: TouchEvent<HTMLDivElement>) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+  };
 
   const nextSlide = useCallback(() => {
     const isLastSlide = currentSlide === slides.length - 1;
@@ -38,12 +63,20 @@ function TestimonialCarousel({ testimonials: slides, autoScroll = true, scrollIn
         <p className='font-semibold md:text-[40px] text-[27px]'>What others are saying</p>
       </Blurb>
       <div
+        onTouchStart={(e) => onTouchStart(e)}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
         className='w-full h-full duration-500 bg-center bg-cover border-2 rounded-2xl border-lilac'
         style={{
           backgroundImage: `url(${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/testimonials/${slides[currentSlide].image})`
         }}
       />
-      <div className='scale-90 mt-[-50px] shadow-xl'>
+      <div
+        onTouchStart={(e) => onTouchStart(e)}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        className='scale-90 mt-[-50px] shadow-xl'
+      >
         <IndividualTestimonial
           text={slides[currentSlide].text}
           firstName={slides[currentSlide].first_name}
@@ -54,14 +87,14 @@ function TestimonialCarousel({ testimonials: slides, autoScroll = true, scrollIn
       {/* Left Arrow */}
       <button
         onClick={prevSlide}
-        className='hidden group-hover:block absolute top-[50%] translate-x-0 translate-y[-50%] left-7 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer hover:bg-white/50 hover:text-black transition-all duration-200'
+        className='hidden md:group-hover:block absolute top-[50%] translate-x-0 translate-y[-50%] left-7 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer hover:bg-white/50 hover:text-black transition-all duration-200'
       >
         <IoChevronBack size={30} />
       </button>
       {/* Right Arrow */}
       <button
         onClick={nextSlide}
-        className='hidden group-hover:block absolute top-[50%] translate-x-0 translate-y[-50%] right-7 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer hover:bg-white/50 hover:text-black transition-all duration-200'
+        className='hidden md:group-hover:block absolute top-[50%] translate-x-0 translate-y[-50%] right-7 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer hover:bg-white/50 hover:text-black transition-all duration-200'
       >
         <IoChevronForward size={30} />
       </button>
