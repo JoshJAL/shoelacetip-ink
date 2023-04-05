@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
-import { IoMenu } from 'react-icons/io5/index.js';
+import { IoLogoInstagram, IoMenu } from 'react-icons/io5/index.js';
 import DropdownMenuItem from './DropdownMenuItem';
 
 export default function DropdownMenu() {
@@ -34,6 +34,12 @@ export default function DropdownMenu() {
             <DropdownMenuItem href={'/artist'}>Artist</DropdownMenuItem>
             <DropdownMenuItem href={'/gallery'}>Gallery</DropdownMenuItem>
             <DropdownMenuItem href={'/FAQ'}>FAQ</DropdownMenuItem>
+            <DropdownMenuItem href={'https://www.instagram.com/shoelacetip_ink/'} target='_blank'>
+              <div className='flex items-center gap-1'>
+                <IoLogoInstagram />
+                Instagram
+              </div>
+            </DropdownMenuItem>
           </div>
         </Menu.Items>
       </Transition>

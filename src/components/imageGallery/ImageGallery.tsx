@@ -49,6 +49,7 @@ export default function ImageGallery({ gallery }: ImageGalleryProps) {
             onClick={() => getImage(galleryItem.image, galleryItem.description, galleryItem.description)}
           >
             <BlurImage
+              imageLoading='lazy'
               alt={galleryItem.title}
               imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/gallery/${galleryItem.image}`}
               additionalClassNames='rounded-lg'

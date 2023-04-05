@@ -1,4 +1,5 @@
 import { Menu } from '@headlessui/react';
+import Link from 'next/link';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -7,13 +8,15 @@ function classNames(...classes: string[]) {
 interface DropdownMenuItemProps {
   href: string;
   children: React.ReactNode;
+  target?: '_self' | '_blank' | '_parent' | '_top';
 }
 
-export default function DropdownMenuItem({ href, children }: DropdownMenuItemProps) {
+export default function DropdownMenuItem({ href, children, target = '_self' }: DropdownMenuItemProps) {
   return (
     <Menu.Item>
       {(active) => (
-        <a
+        <Link
+          target={target}
           href={href}
           className={classNames(
             active ? 'bg-lightOlive' : '',
@@ -22,7 +25,7 @@ export default function DropdownMenuItem({ href, children }: DropdownMenuItemPro
           )}
         >
           {children}
-        </a>
+        </Link>
       )}
     </Menu.Item>
   );

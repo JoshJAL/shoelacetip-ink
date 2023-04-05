@@ -4,6 +4,7 @@ import DropdownMenu from '../dropdownMenu/DropdownMenu';
 import WormIcon from '../wormIcon/WormIcon';
 import HeaderLink from './HeaderLink';
 import { useRouter } from 'next/navigation';
+import { IoLogoInstagram } from 'react-icons/io5';
 
 export default function Header() {
   const router = useRouter();
@@ -20,6 +21,10 @@ export default function Header() {
             <HeaderLink href={'/artist'}>Artist</HeaderLink>
             <HeaderLink href={'/gallery'}>Gallery</HeaderLink>
             <HeaderLink href={'/FAQ'}>FAQ</HeaderLink>
+            <HeaderLink target='_blank' href={'https://www.instagram.com/shoelacetip_ink/'}>
+              <IoLogoInstagram />
+              Instagram
+            </HeaderLink>
           </div>
           <div className='flex-1'></div>
           <Button text='Book Me' additionalClasses='font-semibold' onClick={() => router.push('/contact')} />
