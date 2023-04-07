@@ -30,7 +30,7 @@ export default function ImageGallery({ gallery }: ImageGalleryProps) {
         <BlurImage
           imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/gallery/${tempImageSrc}`}
           alt='Opened Gallery Image'
-          additionalClassNames='w-full max-w-[100%] h-screen'
+          additionalClassNames='w-full max-w-[100%] h-screen object-contain'
         />
         <IoClose
           className='fixed w-20 h-20 cursor-pointer top-3 lg:right-[15%] right-3 text-lilac hover:text-lilacHover'
