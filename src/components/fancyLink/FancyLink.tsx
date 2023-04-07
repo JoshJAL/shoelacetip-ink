@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import type { IconType } from 'react-icons/lib';
 
 interface FancyLinkProps {
   href: string;
