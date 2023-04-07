@@ -122,13 +122,16 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
 interface RichTextEditorProps {
   setText: (text: string) => void;
+  setPlainText?: (plainText: string) => void;
 }
 
-const RichTextEditor = ({ setText }: RichTextEditorProps) => {
+const RichTextEditor = ({ setText, setPlainText }: RichTextEditorProps) => {
   const editor = useEditor({
     extensions: [StarterKit, Underline, Link],
     content: ``,
     onUpdate: ({ editor }) => {
+      const plainText = editor.getText();
+      if (setPlainText) setPlainText(plainText);
       const html = editor.getHTML();
       setText(html);
     }

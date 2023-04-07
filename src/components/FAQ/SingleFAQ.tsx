@@ -7,7 +7,7 @@ interface Props {
 
 export default function SingleFAQ({ currentFAQ }: Props) {
   return (
-    <div className='flex flex-col py-4'>
+    <div id={currentFAQ.divId} className='flex flex-col py-4'>
       <div className='flex items-center justify-center w-full'>
         <Blurb>
           <div dangerouslySetInnerHTML={{ __html: currentFAQ.question }} />

@@ -1,6 +1,7 @@
 import Body from '@/components/Body';
 import Content from '@/components/Content';
 import DefaultHead from '@/components/DefaultHead';
+import FAQQuickLinksHeader from '@/components/FAQ/FAQQuickLinksHeader';
 import SingleFAQ from '@/components/FAQ/SingleFAQ';
 import Main from '@/components/Main';
 import Header from '@/components/header/Header';
@@ -40,6 +41,7 @@ export default function FAQ() {
               <LoadingSpinner />
             </div>
             <div className={`${loading ? 'hidden' : 'flex'} flex-col`}>
+              <FAQQuickLinksHeader currentFAQArray={currentFAQArray} />
               <div className='flex flex-col items-center justify-center w-full text-center'>
                 <p className='text-xl font-semibold'>Shop minimum is $95, $130/hr rate for all tattoos</p>
                 <p>

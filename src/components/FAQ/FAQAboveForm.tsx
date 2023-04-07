@@ -1,5 +1,4 @@
 import { FAQ as FAQType } from '@/types/FAQ';
-import Blurb from '../blurb/Blurb';
 import Label from '../formComponents/Label';
 import Button from '../Button';
 import supabase from '@/utils/supabase';
@@ -23,9 +22,11 @@ export default function FAQAboveForm({ currentFAQ, setCurrentFAQs }: Props) {
     const { data, error } = await supabase.from('faq').delete().match({ id: currentFAQ.id }).select('*');
     if (error) {
       console.log(error);
+      setDeleting(false);
     }
     if (data) {
       setCurrentFAQs((prev) => prev.filter((faq) => faq.id !== currentFAQ.id));
+      setDeleting(false);
     }
   };
 
