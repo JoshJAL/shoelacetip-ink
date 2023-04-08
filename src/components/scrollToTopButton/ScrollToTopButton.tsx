@@ -28,7 +28,7 @@ export default function ScrollToTopButton() {
     <button
       className={`${
         scrollY < 500 ? 'opacity-0 cursor-default' : 'opacity-100'
-      } fixed flex items-center justify-center gap-2 px-4 py-3 rounded-lg bottom-4 bg-lilac hover:bg-lilacHover md:right-[22.8%] right-2 transition-all duration-200 ease-in-out`}
+      } fixed flex items-center justify-center gap-2 px-4 py-3 rounded-lg bottom-4 bg-lilac md:hover:bg-lilacHover md:right-[22.8%] right-2 transition-all duration-200 ease-in-out`}
       onClick={scrollToTop}
     >
       <FaArrowUp /> Back to the Top
