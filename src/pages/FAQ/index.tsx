@@ -6,6 +6,7 @@ import SingleFAQ from '@/components/FAQ/SingleFAQ';
 import Main from '@/components/Main';
 import Header from '@/components/header/Header';
 import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
+import ScrollToTopButton from '@/components/scrollToTopButton/ScrollToTopButton';
 import { fetchFAQs } from '@/functions/FAQ';
 import { FAQ as FAQType } from '@/types/FAQ';
 import { useEffect, useState } from 'react';
@@ -41,6 +42,7 @@ export default function FAQ() {
               <LoadingSpinner />
             </div>
             <div className={`${loading ? 'hidden' : 'flex'} flex-col`}>
+              <ScrollToTopButton />
               <FAQQuickLinksHeader currentFAQArray={currentFAQArray} />
               <div className='flex flex-col items-center justify-center w-full text-center'>
                 <p className='text-xl font-semibold'>Shop minimum is $95, $130/hr rate for all tattoos</p>
