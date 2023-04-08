@@ -15,6 +15,7 @@ export default function FAQAboveForm({ currentFAQ, setCurrentFAQs }: Props) {
   const [updating, setUpdating] = useState(false);
   const [newQuestion, setNewQuestion] = useState(currentFAQ.question);
   const [newAnswer, setNewAnswer] = useState(currentFAQ.answer);
+  const [newPlainQuestion, setNewPlainQuestion] = useState(currentFAQ.divId);
 
   const handleDelete = async () => {
     setDeleting(true);
@@ -34,7 +35,7 @@ export default function FAQAboveForm({ currentFAQ, setCurrentFAQs }: Props) {
     setUpdating(true);
     const { data, error } = await supabase
       .from('faq')
-      .update({ question: newQuestion, answer: newAnswer })
+      .update({ question: newQuestion, answer: newAnswer, divId: newPlainQuestion })
       .match({ id: currentFAQ.id })
       .select('*');
     if (error) {
@@ -52,7 +53,7 @@ export default function FAQAboveForm({ currentFAQ, setCurrentFAQs }: Props) {
     <div className='flex flex-col w-full gap-2 p-2 my-2 border-2 rounded-lg border-customPink'>
       <Label htmlFor='question' text='Question:' />
       <div className='mb-4 text-lg' dangerouslySetInnerHTML={{ __html: currentFAQ.question }} />
-      <RichTextEditor setText={setNewQuestion} />
+      <RichTextEditor setText={setNewQuestion} setPlainText={setNewPlainQuestion} />
       <Label htmlFor='answer' text='Answer:' />
       <div className='mb-4 text-lg' dangerouslySetInnerHTML={{ __html: currentFAQ.answer }} />
       <RichTextEditor setText={setNewAnswer} />
