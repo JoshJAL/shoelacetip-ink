@@ -12,6 +12,7 @@ interface AddGalleryFormProps {
 export default function AddGalleryImageForm({ setCurrentGallery }: AddGalleryFormProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [tag, setTag] = useState('');
   const [updating, setUpdating] = useState(false);
   const fileInputRef = useRef(null);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -35,7 +36,8 @@ export default function AddGalleryImageForm({ setCurrentGallery }: AddGalleryFor
           {
             title: title.trim(),
             description: description.trim(),
-            image: uploadedImage.name
+            image: uploadedImage.name,
+            tag: tag.trim()
           }
         ])
         .select('*');
@@ -48,6 +50,7 @@ export default function AddGalleryImageForm({ setCurrentGallery }: AddGalleryFor
 
       setTitle('');
       setDescription('');
+      setTag('');
       setUploadedImage(null);
       setUpdating(false);
       // @ts-ignore
@@ -73,6 +76,17 @@ export default function AddGalleryImageForm({ setCurrentGallery }: AddGalleryFor
         onChange={(e) => setDescription(e.target.value)}
         required
       />
+      <Label htmlFor='tag' text='Category:' />
+      <select
+        name='tag'
+        onChange={(e) => setTag(e.target.value)}
+        className='px-2 py-2 text-lg font-semibold border-2 rounded-lg outline-none cursor-pointer border-lilac'
+      >
+        <option value=''>Select a tag</option>
+        <option value='general'>General</option>
+        <option value='something'>Something</option>
+        <option value='somethingElse'>Something Else</option>
+      </select>
       <Label htmlFor='image' text='Upload New Image:' />
       <input
         required

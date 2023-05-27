@@ -36,6 +36,7 @@ export default function UpdatePagesDropdownMenu() {
             <DropdownMenuItem href={'/updateArtist'}>Update Artist</DropdownMenuItem>
             <DropdownMenuItem href={'/updateFAQ'}>Update FAQ</DropdownMenuItem>
             <DropdownMenuItem href={'/updateGallery'}>Update Gallery</DropdownMenuItem>
+            <DropdownMenuItem href={'/updateFavorites'}>Update Favorites</DropdownMenuItem>
           </div>
         </Menu.Items>
       </Transition>

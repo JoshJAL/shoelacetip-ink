@@ -12,18 +12,15 @@ export default function Hero({ heroInformation }: HeroProps) {
       <div className='flex items-center justify-center w-full p-6 rounded-lg bg-lilac'>
         <BlurImage
           imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/hero/${heroInformation.heroImage}`}
-          additionalClassNames='md:w-[60%] w-full rounded-lg shadow-lg '
+          additionalClassNames='xl:w-[80%] w-full rounded-lg shadow-lg '
           alt='Hero Image'
         />
       </div>
 
-      <div className='py-4'>
+      <div className='pt-4'>
         <Blurb>
           <p dangerouslySetInnerHTML={{ __html: heroInformation.bio }} />
         </Blurb>
-        <p className='py-4 text-xl font-semibold text-center'>
-          <i>{heroInformation.disclaimer}</i>
-        </p>
       </div>
     </section>
   );

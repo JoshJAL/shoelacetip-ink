@@ -14,7 +14,6 @@ interface Props {
 
 export default function UpdateHeroContent({ currentHero }: Props) {
   const [bio, setBio] = useState(currentHero.bio);
-  const [disclaimer, setDisclaimer] = useState(currentHero.disclaimer);
   const [submitting, setSubmitting] = useState(false);
   const [currentBio, setCurrentBio] = useState(currentHero.bio);
   const [image, setImage] = useState(currentHero.heroImage as string);
@@ -57,10 +56,8 @@ export default function UpdateHeroContent({ currentHero }: Props) {
         console.log(error);
       } finally {
         setImage(fileName);
-        updateHeroFunction(bio, disclaimer, fileName);
+        updateHeroFunction(bio, fileName);
       }
-    } else {
-      await updateHeroFunction(bio, disclaimer);
     }
 
     setCurrentBio(bio);
@@ -92,8 +89,6 @@ export default function UpdateHeroContent({ currentHero }: Props) {
         <p className='pb-4 text-lg font-semibold' dangerouslySetInnerHTML={{ __html: currentBio }} />
       </div>
       <RichTextEditor setText={setBio} />
-      <Label htmlFor='disclaimer' text='Disclaimer:' />
-      <TextArea required name='disclaimer' value={disclaimer} onChange={(e) => setDisclaimer(e.target.value)} />
       <div className='py-4'>
         <SubmitButton text={submitting ? 'Submitting...' : 'Submit'} />
       </div>

@@ -17,6 +17,7 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }:
   const [title, setTitle] = useState(currentGallery.title as string);
   const [description, setDescription] = useState(currentGallery.description as string);
   const [image, setImage] = useState(currentGallery.image as string);
+  const [tag, setTag] = useState(currentGallery.tag as string);
   const [updating, setUpdating] = useState(false);
   const fileInputRef = useRef(null);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -76,7 +77,8 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }:
           .update({
             title: title.trim(),
             image: fileName,
-            description: description.trim()
+            description: description.trim(),
+            tag: tag.trim()
           })
           .eq('id', currentGallery.id);
 
@@ -89,7 +91,8 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }:
         .from('gallery')
         .update({
           title: title.trim(),
-          description: description.trim()
+          description: description.trim(),
+          tag: tag.trim()
         })
         .eq('id', currentGallery.id);
 
@@ -114,6 +117,18 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }:
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        <Label htmlFor='tag' text='Category:' />
+        <select
+          name='tag'
+          onChange={(e) => setTag(e.target.value)}
+          className='px-2 py-2 text-lg font-semibold border-2 rounded-lg outline-none cursor-pointer border-lilac'
+          value={tag}
+        >
+          <option value=''>Select a tag</option>
+          <option value='general'>General</option>
+          <option value='something'>Something</option>
+          <option value='somethingElse'>Something Else</option>
+        </select>
         <Label htmlFor='image' text='Current Image:' />
         <BlurImage
           imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/gallery/${image}`}

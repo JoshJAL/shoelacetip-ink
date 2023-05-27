@@ -4,4 +4,5 @@ export type Gallery = {
   image: string;
   title: string;
   description: string;
+  tag: string;
 };

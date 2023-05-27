@@ -1,16 +1,20 @@
-import { Testimonial } from '@/types/testimonials';
 import { useState, useEffect, useCallback, TouchEvent } from 'react';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
-import IndividualTestimonial from '../testimonials/IndividualTestimonial';
 import Blurb from '../blurb/Blurb';
+import BlurImage from '../blurImage/BlurImage';
+import { FavoriteTattoos } from '@/types/favoriteTattoos';
 
 interface Props {
-  testimonials: Testimonial[];
+  favorites: string[];
   autoScroll?: boolean;
   scrollInterval?: number;
 }
 
-function TestimonialCarousel({ testimonials: slides, autoScroll = false, scrollInterval = 5000 }: Props) {
+export default function FavoriteTattoosCarousel({
+  favorites: slides,
+  autoScroll = true,
+  scrollInterval = 5000
+}: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -57,50 +61,49 @@ function TestimonialCarousel({ testimonials: slides, autoScroll = false, scrollI
   }, [currentSlide, autoScroll, scrollInterval, nextSlide]);
 
   return (
-    <div className='relative w-full max-w-xl pb-12 m-auto group'>
+    <div className='max-w-xl md:h-[780px] h-[615px] w-full m-auto mb-36 relative group'>
       <Blurb>
-        <p className='font-semibold md:text-[40px] text-[27px]'>What others are saying</p>
+        <p className='font-semibold md:text-[40px] text-[27px]'>My Favorites</p>
       </Blurb>
       <div
         onTouchStart={(e) => onTouchStart(e)}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
-        className='scale-90 shadow-xl'
-      >
-        <IndividualTestimonial
-          text={slides[currentSlide].text}
-          firstName={slides[currentSlide].first_name}
-          lastName={slides[currentSlide].last_name}
-          affiliation={slides[currentSlide].affiliation}
-        />
-      </div>
+        className='w-full h-full duration-500 bg-center bg-cover border-2 rounded-2xl border-lilac'
+        style={{
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${slides[currentSlide]})`
+        }}
+      />
       {/* Left Arrow */}
       <button
         onClick={prevSlide}
-        className='hidden md:group-hover:block absolute top-[50%] translate-x-[-100%] translate-y[-50%] left-7 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer hover:bg-customPink/50 hover:text-black transition-all duration-200'
+        className='hidden md:group-hover:block absolute top-[50%] translate-x-0 translate-y[-50%] left-7 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer hover:bg-customPink/50 hover:text-black transition-all duration-200'
       >
         <IoChevronBack size={30} />
       </button>
       {/* Right Arrow */}
       <button
         onClick={nextSlide}
-        className='hidden md:group-hover:block absolute top-[50%] translate-x-[100%] translate-y[-50%] right-7 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer hover:bg-customPink/50 hover:text-black transition-all duration-200'
+        className='hidden md:group-hover:block absolute top-[50%] translate-x-0 translate-y[-50%] right-7 text-2xl rounded-full p-2 bg-black/50 text-white cursor-pointer hover:bg-customPink/50 hover:text-black transition-all duration-200'
       >
         <IoChevronForward size={30} />
       </button>
       <div className='flex justify-center py-4 top-4'>
-        {slides.map((_slide, index) => (
+        {slides.map((slide, index) => (
           <div
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`h-4 w-4 flex mx-1 items-center cursor-pointer bg-customPink rounded-full ${
-              index === currentSlide ? 'scale-[1.5] mx-3' : ''
+            className={`h-4 w-4 flex mx-1 items-center cursor-pointer ${
+              index === currentSlide ? 'scale-[2.4] mx-3' : ''
             } transition-all duration-200 ease-in-out`}
-          />
+          >
+            <BlurImage
+              imageSource={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images/carousel/${slide}`}
+              alt='Rotating image preview'
+            />
+          </div>
         ))}
       </div>
     </div>
   );
 }
-
-export default TestimonialCarousel;
