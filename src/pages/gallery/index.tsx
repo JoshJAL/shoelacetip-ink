@@ -43,7 +43,7 @@ export default function Tattoos() {
         setSomethingElse((prev) => [...prev, image]);
       }
     });
-  }, [setGallery, initialLoad, setGeneral, setSomething, setSomethingElse, gallery]);
+  }, [setGallery, initialLoad, setGeneral, setSomething, setSomethingElse]);
 
   return (
     <>
