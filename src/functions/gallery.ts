@@ -1,11 +1,12 @@
 import { Gallery } from '@/types/gallery';
 import supabase from '@/utils/supabase';
 
-export const fetchGallery = async (setCurrentGalleryArray: React.Dispatch<React.SetStateAction<Gallery[]>>) => {
+export const fetchGallery = async (setCurrentGalleryArray?: React.Dispatch<React.SetStateAction<Gallery[]>>) => {
   let { data: gallery } = await supabase.from('gallery').select('*');
-  if (!gallery) return;
+  if (!gallery) return [];
   gallery = gallery?.sort((a, b) => a.id - b.id);
-  setCurrentGalleryArray(gallery as Gallery[]);
+  if (setCurrentGalleryArray) setCurrentGalleryArray(gallery as Gallery[]);
+  return gallery as Gallery[];
 };
 
 export const deleteGalleryItem = async (id: number) => {

@@ -13,7 +13,6 @@ import { Tag } from '@/types/tags';
 import { useState, useEffect } from 'react';
 
 export default function Tattoos() {
-  const [gallery, setGallery] = useState<Gallery[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [tags, setTags] = useState<Tag[]>([]);
   const [tag1, setTag1] = useState<Gallery[]>([]);
@@ -22,33 +21,36 @@ export default function Tattoos() {
 
   useEffect(() => {
     async function fetchCurrentGallery() {
-      await fetchGallery(setGallery);
+      const currentGallery = await fetchGallery();
       const currentTags = await getTags();
       setTags(currentTags);
-    }
 
-    fetchCurrentGallery();
-  }, [setGallery, setTag1, setTag2, setTag3, setTags]);
+      if (currentGallery.length === 0) return;
 
-  useEffect(() => {
-    for (let i = 0; i < tags.length; i++) {
-      for (let j = 0; j < gallery.length; j++) {
-        if (gallery[j].tag === tags[i].tag_name && tags[i].id === 1) {
-          setTag1((prev) => [...prev, gallery[j]]);
+      try {
+        for (let i = 0; i < currentTags.length; i++) {
+          for (let j = 0; j < currentGallery.length; j++) {
+            if (currentGallery[j].tag === currentTags[i].tag_name && currentTags[i].id === 1) {
+              setTag1((prev) => [...prev, currentGallery[j]]);
+            }
+            if (currentGallery[j].tag === currentTags[i].tag_name && currentTags[i].id === 2) {
+              setTag2((prev) => [...prev, currentGallery[j]]);
+            }
+            if (currentGallery[j].tag === currentTags[i].tag_name && currentTags[i].id === 3) {
+              setTag3((prev) => [...prev, currentGallery[j]]);
+            }
+            1;
+          }
         }
-        if (gallery[j].tag === tags[i].tag_name && tags[i].id === 2) {
-          setTag2((prev) => [...prev, gallery[j]]);
-        }
-        if (gallery[j].tag === tags[i].tag_name && tags[i].id === 3) {
-          setTag3((prev) => [...prev, gallery[j]]);
-        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
     }
 
-    if (gallery.length > 0) {
-      setLoading(false);
-    }
-  }, [gallery]);
+    fetchCurrentGallery();
+  }, [setTag1, setTag2, setTag3, setTags]);
 
   tags.sort((a, b) => (a.id > b.id ? 1 : -1));
 
