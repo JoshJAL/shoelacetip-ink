@@ -4,18 +4,22 @@ import InputTextEmailPassword from '../formComponents/InputTextEmailPassword';
 import Label from '../formComponents/Label';
 import SubmitButton from '../formComponents/SubmitButton';
 import { Gallery } from '@/types/gallery';
+import { Tag } from '@/types/tags';
 
 interface AddGalleryFormProps {
   setCurrentGallery: React.Dispatch<React.SetStateAction<Gallery[]>>;
+  tags: Tag[];
 }
 
-export default function AddGalleryImageForm({ setCurrentGallery }: AddGalleryFormProps) {
+export default function AddGalleryImageForm({ setCurrentGallery, tags }: AddGalleryFormProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tag, setTag] = useState('');
   const [updating, setUpdating] = useState(false);
   const fileInputRef = useRef(null);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+
+  tags.sort((a, b) => a.id - b.id);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -83,9 +87,11 @@ export default function AddGalleryImageForm({ setCurrentGallery }: AddGalleryFor
         className='px-2 py-2 text-lg font-semibold border-2 rounded-lg outline-none cursor-pointer border-lilac'
       >
         <option value=''>Select a tag</option>
-        <option value='general'>General</option>
-        <option value='something'>Something</option>
-        <option value='somethingElse'>Something Else</option>
+        {tags.map((tag) => (
+          <option key={tag.id} value={tag.tag_name}>
+            {tag.tag_name}
+          </option>
+        ))}
       </select>
       <Label htmlFor='image' text='Upload New Image:' />
       <input

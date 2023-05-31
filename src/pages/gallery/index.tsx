@@ -7,20 +7,40 @@ import ImageGallery from '@/components/imageGallery/ImageGallery';
 import LoadingSpinner from '@/components/loadingSpinner/LoadingSpinner';
 import Main from '@/components/Main';
 import { fetchGallery } from '@/functions/gallery';
+import { getTags } from '@/functions/tags';
 import { Gallery } from '@/types/gallery';
+import { Tag } from '@/types/tags';
 import { useState, useEffect } from 'react';
 
 export default function Tattoos() {
   const [gallery, setGallery] = useState<Gallery[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [initialLoad, setInitialLoad] = useState<boolean>(true);
-  const [general, setGeneral] = useState<Gallery[]>([]);
-  const [something, setSomething] = useState<Gallery[]>([]);
-  const [somethingElse, setSomethingElse] = useState<Gallery[]>([]);
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [tag1, setTag1] = useState<Gallery[]>([]);
+  const [tag2, setTag2] = useState<Gallery[]>([]);
+  const [tag3, setTag3] = useState<Gallery[]>([]);
 
   useEffect(() => {
     async function fetchCurrentGallery() {
       await fetchGallery(setGallery);
+      const currentTags = await getTags();
+      setTags(currentTags);
+
+      for (let i = 0; i < tags.length; i++) {
+        for (let j = 0; j < gallery.length; j++) {
+          if (gallery[j].tag === tags[i].tag_name && tags[i].id === 1) {
+            setTag1((prev) => [...prev, gallery[j]]);
+          }
+          if (gallery[j].tag === tags[i].tag_name && tags[i].id === 2) {
+            setTag2((prev) => [...prev, gallery[j]]);
+          }
+          if (gallery[j].tag === tags[i].tag_name && tags[i].id === 3) {
+            setTag3((prev) => [...prev, gallery[j]]);
+          }
+        }
+      }
+
       setInitialLoad(false);
     }
 
@@ -31,19 +51,13 @@ export default function Tattoos() {
         setLoading(false);
       }, 1000);
     }
+  }, [setGallery, initialLoad, setTag1, setTag2, setTag3, setTags]);
 
-    gallery.map((image) => {
-      if (image.tag === 'general') {
-        setGeneral((prev) => [...prev, image]);
-      }
-      if (image.tag === 'something') {
-        setSomething((prev) => [...prev, image]);
-      }
-      if (image.tag === 'somethingElse') {
-        setSomethingElse((prev) => [...prev, image]);
-      }
-    });
-  }, [setGallery, initialLoad, setGeneral, setSomething, setSomethingElse]);
+  useEffect(() => {}, []);
+
+  console.log(tags);
+
+  tags.sort((a, b) => (a.id > b.id ? 1 : -1));
 
   return (
     <>
@@ -56,18 +70,14 @@ export default function Tattoos() {
               <LoadingSpinner />
             </div>
             <div className={`${loading ? 'hidden' : 'flex'} flex-col`}>
-              <Blurb>
-                <h1 className='text-4xl font-bold'>General</h1>
-              </Blurb>
-              <ImageGallery gallery={general} />
-              <Blurb>
-                <h1 className='text-4xl font-bold'>Something</h1>
-              </Blurb>
-              <ImageGallery gallery={something} />
-              <Blurb>
-                <h1 className='text-4xl font-bold'>Something Else</h1>
-              </Blurb>
-              <ImageGallery gallery={somethingElse} />
+              {tags.map((tag) => (
+                <div key={tag.id}>
+                  <Blurb>
+                    <h1 className='text-4xl font-bold'>{tag.tag_name}</h1>
+                  </Blurb>
+                  <ImageGallery gallery={tag.id === 1 ? tag1 : tag.id === 2 ? tag2 : tag3} />
+                </div>
+              ))}
             </div>
           </Content>
         </Main>

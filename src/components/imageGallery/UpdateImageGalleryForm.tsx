@@ -7,13 +7,15 @@ import SubmitButton from '../formComponents/SubmitButton';
 import { Gallery } from '@/types/gallery';
 import { deleteGalleryItem } from '@/functions/gallery';
 import BlurImage from '../blurImage/BlurImage';
+import { Tag } from '@/types/tags';
 
 interface Props {
   currentGallery: Gallery;
   setCurrentGallery: React.Dispatch<React.SetStateAction<Gallery[]>>;
+  tags: Tag[];
 }
 
-export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }: Props) {
+export default function UpdateGalleryForm({ currentGallery, setCurrentGallery, tags }: Props) {
   const [title, setTitle] = useState(currentGallery.title as string);
   const [description, setDescription] = useState(currentGallery.description as string);
   const [image, setImage] = useState(currentGallery.image as string);
@@ -105,6 +107,8 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }:
     fileInputRef.current.value = null;
   }
 
+  tags.sort((a, b) => a.id - b.id);
+
   return (
     <div>
       <form className='flex flex-col w-full' onSubmit={(e) => handleSubmit(e)}>
@@ -125,9 +129,11 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery }:
           value={tag}
         >
           <option value=''>Select a tag</option>
-          <option value='general'>General</option>
-          <option value='something'>Something</option>
-          <option value='somethingElse'>Something Else</option>
+          {tags.map((tag) => (
+            <option key={tag.id} value={tag.tag_name}>
+              {tag.tag_name}
+            </option>
+          ))}
         </select>
         <Label htmlFor='image' text='Current Image:' />
         <BlurImage

@@ -15,3 +15,11 @@ export const deleteGalleryItem = async (id: number) => {
   data = data?.sort((a, b) => a.id - b.id);
   return data as Gallery[];
 };
+
+export async function updateGalleryTag(newTag: string, ogTag: string) {
+  const { data, error } = await supabase.from('gallery').update({ tag: newTag }).eq('tag', ogTag).select('*');
+
+  if (error) console.error(error);
+
+  return data as Gallery[];
+}
