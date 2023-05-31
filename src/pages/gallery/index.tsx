@@ -15,7 +15,6 @@ import { useState, useEffect } from 'react';
 export default function Tattoos() {
   const [gallery, setGallery] = useState<Gallery[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [initialLoad, setInitialLoad] = useState<boolean>(true);
   const [tags, setTags] = useState<Tag[]>([]);
   const [tag1, setTag1] = useState<Gallery[]>([]);
   const [tag2, setTag2] = useState<Gallery[]>([]);
@@ -26,32 +25,30 @@ export default function Tattoos() {
       await fetchGallery(setGallery);
       const currentTags = await getTags();
       setTags(currentTags);
-
-      for (let i = 0; i < tags.length; i++) {
-        for (let j = 0; j < gallery.length; j++) {
-          if (gallery[j].tag === tags[i].tag_name && tags[i].id === 1) {
-            setTag1((prev) => [...prev, gallery[j]]);
-          }
-          if (gallery[j].tag === tags[i].tag_name && tags[i].id === 2) {
-            setTag2((prev) => [...prev, gallery[j]]);
-          }
-          if (gallery[j].tag === tags[i].tag_name && tags[i].id === 3) {
-            setTag3((prev) => [...prev, gallery[j]]);
-          }
-        }
-      }
-
-      setInitialLoad(false);
     }
 
     fetchCurrentGallery();
+  }, [setGallery, setTag1, setTag2, setTag3, setTags]);
 
-    if (!initialLoad) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1500);
+  useEffect(() => {
+    for (let i = 0; i < tags.length; i++) {
+      for (let j = 0; j < gallery.length; j++) {
+        if (gallery[j].tag === tags[i].tag_name && tags[i].id === 1) {
+          setTag1((prev) => [...prev, gallery[j]]);
+        }
+        if (gallery[j].tag === tags[i].tag_name && tags[i].id === 2) {
+          setTag2((prev) => [...prev, gallery[j]]);
+        }
+        if (gallery[j].tag === tags[i].tag_name && tags[i].id === 3) {
+          setTag3((prev) => [...prev, gallery[j]]);
+        }
+      }
     }
-  }, [setGallery, initialLoad, setTag1, setTag2, setTag3, setTags]);
+
+    if (gallery.length > 0) {
+      setLoading(false);
+    }
+  }, [gallery]);
 
   tags.sort((a, b) => (a.id > b.id ? 1 : -1));
 
