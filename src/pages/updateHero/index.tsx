@@ -15,7 +15,7 @@ export default function UpdateHero() {
     try {
       fetchHero(setCurrentHeroArray);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, [setCurrentHeroArray]);
 

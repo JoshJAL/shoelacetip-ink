@@ -22,7 +22,7 @@ export default function FAQAboveForm({ currentFAQ, setCurrentFAQs }: Props) {
     if (!confirm('Are you sure you want to delete this FAQ?')) return;
     const { data, error } = await supabase.from('faq').delete().match({ id: currentFAQ.id }).select('*');
     if (error) {
-      console.log(error);
+      console.error(error);
       setDeleting(false);
     }
     if (data) {
@@ -39,7 +39,7 @@ export default function FAQAboveForm({ currentFAQ, setCurrentFAQs }: Props) {
       .match({ id: currentFAQ.id })
       .select('*');
     if (error) {
-      console.log(error);
+      console.error(error);
     }
     if (data) {
       currentFAQ.question = newQuestion;

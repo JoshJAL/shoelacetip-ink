@@ -17,7 +17,7 @@ export default function UpdateFAQ() {
     try {
       fetchFAQs(setCurrentFAQArray);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, [setCurrentFAQArray]);
 

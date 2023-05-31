@@ -15,7 +15,7 @@ export default function Tattoos() {
     try {
       getArtistPageData(setCurrentArtistPageInfo);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, [setCurrentArtistPageInfo]);
 

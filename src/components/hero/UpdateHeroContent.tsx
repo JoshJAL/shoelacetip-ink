@@ -45,7 +45,7 @@ export default function UpdateHeroContent({ currentHero }: Props) {
             .upload('hero/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
 
           if (error) {
-            console.log(error);
+            console.error(error);
           }
         }
 
@@ -53,7 +53,7 @@ export default function UpdateHeroContent({ currentHero }: Props) {
           alert(error.message + '\nThere was an error uploading your image.\nPlease try again.');
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setImage(fileName);
         updateHeroFunction(bio, fileName);

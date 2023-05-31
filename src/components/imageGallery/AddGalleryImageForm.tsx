@@ -31,7 +31,7 @@ export default function AddGalleryImageForm({ setCurrentGallery, tags }: AddGall
 
       if (error && error.message !== 'The resource already exists') {
         alert(error.message + '\nThere was an error uploading your image.\nPlease try again.');
-        console.log(error);
+        console.error(error);
       }
 
       const { data, error: galleryError } = await supabase
@@ -49,7 +49,7 @@ export default function AddGalleryImageForm({ setCurrentGallery, tags }: AddGall
       setCurrentGallery((prev) => [...prev, data![0] as Gallery]);
 
       if (galleryError) {
-        console.log(galleryError.message + '\nThere was an error updating your gallery item.\nPlease try again.');
+        console.error(galleryError.message + '\nThere was an error updating your gallery item.\nPlease try again.');
       }
 
       setTitle('');

@@ -36,11 +36,10 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery, t
     if (!confirm('Are you sure you want to delete this gallery image?')) return;
     setDeleting(true);
     try {
-      const data = await deleteGalleryItem(index);
-      console.log(data);
+      await deleteGalleryItem(index);
       setCurrentGallery((prev) => prev.filter((galleryItem) => galleryItem.id !== index));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     setDeleting(false);
   }
@@ -62,7 +61,7 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery, t
             .upload('gallery/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
 
           if (error) {
-            console.log(error);
+            console.error(error);
           }
         }
 
@@ -70,7 +69,7 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery, t
           alert(error.message + '\nThere was an error uploading your image.\nPlease try again.');
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setImage(fileName);
 
@@ -85,7 +84,7 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery, t
           .eq('id', currentGallery.id);
 
         if (error) {
-          console.log(error.message + '\nThere was an error updating your gallery item.\nPlease try again.');
+          console.error(error.message + '\nThere was an error updating your gallery item.\nPlease try again.');
         }
       }
     } else {
@@ -99,7 +98,7 @@ export default function UpdateGalleryForm({ currentGallery, setCurrentGallery, t
         .eq('id', currentGallery.id);
 
       if (error) {
-        console.log(error.message + '\nThere was an error updating your gallery item.\nPlease try again.');
+        console.error(error.message + '\nThere was an error updating your gallery item.\nPlease try again.');
       }
     }
     setUpdating(false);

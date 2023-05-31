@@ -44,7 +44,7 @@ export default function UpdateArtistForm({ currentArtistPageInfo }: Props) {
             .upload('artist/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
 
           if (error) {
-            console.log(error);
+            console.error(error);
           }
 
           setImage(fileName);
@@ -54,7 +54,7 @@ export default function UpdateArtistForm({ currentArtistPageInfo }: Props) {
           alert(error.message + '\nThere was an error uploading your image.\nPlease try again.');
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setImage(fileName);
         await updateArtistPageData(bio, fileName);

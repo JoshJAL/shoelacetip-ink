@@ -40,7 +40,7 @@ export default function UpdateTestimonialsForm({ currentTestimonial, setCurrentT
       console.log(data);
       setCurrentTestimonials((prev) => prev.filter((testimonial) => testimonial.id !== index));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     setDeleting(false);
   }
@@ -62,7 +62,7 @@ export default function UpdateTestimonialsForm({ currentTestimonial, setCurrentT
             .upload('testimonials/' + fileName, uploadedImage, { cacheControl: '3600', upsert: false });
 
           if (error) {
-            console.log(error);
+            console.error(error);
           }
         }
 
@@ -70,7 +70,7 @@ export default function UpdateTestimonialsForm({ currentTestimonial, setCurrentT
           alert(error.message + '\nThere was an error uploading your image.\nPlease try again.');
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setImage(fileName);
 

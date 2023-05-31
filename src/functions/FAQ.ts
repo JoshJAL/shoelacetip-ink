@@ -15,7 +15,7 @@ export const updateFAQ = async (id: number, question: string, answer: string) =>
   const { error } = await supabase.from('faq').update({ question, answer }).eq('id', id);
 
   if (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -23,7 +23,7 @@ export const deleteFAQ = async (id: number) => {
   const { error } = await supabase.from('faq').delete().eq('id', id).select('*');
 
   if (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -37,6 +37,6 @@ export const addFAQ = async (question: string, answer: string) => {
   }
 
   if (error) {
-    console.log(error);
+    console.error(error);
   }
 };

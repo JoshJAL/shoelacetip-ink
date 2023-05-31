@@ -17,7 +17,7 @@ export default function UpdateTestimonials() {
     try {
       fetchTestimonials(setCurrentTestimonials);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, [setCurrentTestimonials]);
 

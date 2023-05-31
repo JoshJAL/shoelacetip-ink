@@ -30,7 +30,7 @@ export default function AddTestimonialForm({ currentTestimonials, setCurrentTest
 
       if (error && error.message !== 'The resource already exists') {
         alert(error.message + '\nThere was an error uploading your image.\nPlease try again.');
-        console.log(error);
+        console.error(error);
       }
 
       const { data, error: testimonialError } = await supabase
@@ -49,7 +49,7 @@ export default function AddTestimonialForm({ currentTestimonials, setCurrentTest
       setCurrentTestimonials((prev) => [...prev, data![0] as Testimonial]);
 
       if (testimonialError) {
-        console.log(testimonialError.message + '\nThere was an error updating your testimonial.\nPlease try again.');
+        console.error(testimonialError.message + '\nThere was an error updating your testimonial.\nPlease try again.');
       }
 
       setFirstName('');

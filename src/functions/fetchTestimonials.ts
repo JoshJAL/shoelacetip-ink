@@ -10,7 +10,7 @@ export async function fetchTestimonials(setTestimonials: React.Dispatch<React.Se
 
 export async function deleteTestimonial(id: number) {
   let { data, error } = await supabase.from('testimonials').delete().eq('id', id).select('*');
-  if (error) console.log(error);
+  if (error) console.error(error);
   if (!data) return;
   data = data?.sort((a, b) => a.id - b.id);
   return data as Testimonial[];

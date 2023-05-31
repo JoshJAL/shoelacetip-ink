@@ -53,10 +53,6 @@ export default function Tattoos() {
     }
   }, [setGallery, initialLoad, setTag1, setTag2, setTag3, setTags]);
 
-  useEffect(() => {}, []);
-
-  console.log(tags);
-
   tags.sort((a, b) => (a.id > b.id ? 1 : -1));
 
   return (

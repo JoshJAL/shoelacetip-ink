@@ -23,7 +23,7 @@ export default function Artist() {
       getArtistPageData(setCurrentArtistPageInfo);
       setInitialLoad(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
 
     if (!initialLoad) {

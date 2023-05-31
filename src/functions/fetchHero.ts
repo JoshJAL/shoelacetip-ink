@@ -14,12 +14,12 @@ export async function updateHero(bio: string, disclaimer: string, heroImage?: st
   if (heroImage) {
     const { error } = await supabase.from('hero').update({ bio, disclaimer, heroImage }).eq('id', 1);
     if (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   const { error } = await supabase.from('hero').update({ bio, disclaimer }).eq('id', 1);
 
   if (error) {
-    console.log(error);
+    console.error(error);
   }
 }

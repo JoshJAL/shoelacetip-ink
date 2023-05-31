@@ -19,7 +19,7 @@ export default function CurrentImagesInCarousel({ currentImages, setCurrentImage
 
     setCurrentImages((current) => current.filter((image, i) => image[i] !== current[index]));
     const { error } = await supabase.from('carousel').update({ slides: newArray }).eq('id', 1);
-    if (error) console.log(error);
+    if (error) console.error(error);
   }
 
   if (!viewImages) {
