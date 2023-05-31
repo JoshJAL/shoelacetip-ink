@@ -49,7 +49,7 @@ export default function Tattoos() {
     if (!initialLoad) {
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 1500);
     }
   }, [setGallery, initialLoad, setTag1, setTag2, setTag3, setTags]);
 

@@ -36,8 +36,7 @@ export default function UpdateTestimonialsForm({ currentTestimonial, setCurrentT
     if (!confirm('Are you sure you want to delete this testimonial?')) return;
     setDeleting(true);
     try {
-      const data = await deleteTestimonial(index);
-      console.log(data);
+      await deleteTestimonial(index);
       setCurrentTestimonials((prev) => prev.filter((testimonial) => testimonial.id !== index));
     } catch (error) {
       console.error(error);
@@ -86,7 +85,7 @@ export default function UpdateTestimonialsForm({ currentTestimonial, setCurrentT
           .eq('id', currentTestimonial.id);
 
         if (error) {
-          console.log(error.message + '\nThere was an error updating your testimonial.\nPlease try again.');
+          console.error(error.message + '\nThere was an error updating your testimonial.\nPlease try again.');
         }
       }
     } else {
@@ -101,7 +100,7 @@ export default function UpdateTestimonialsForm({ currentTestimonial, setCurrentT
         .eq('id', currentTestimonial.id);
 
       if (error) {
-        console.log(error.message + '\nThere was an error updating your testimonial.\nPlease try again.');
+        console.error(error.message + '\nThere was an error updating your testimonial.\nPlease try again.');
       }
     }
     setUpdating(false);

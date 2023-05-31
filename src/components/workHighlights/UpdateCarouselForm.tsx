@@ -43,7 +43,7 @@ export default function UpdateCarouselForm({ currentImages, setCurrentImages }: 
       const { error: updateDbRowError } = await supabase.from('carousel').update({ slides: newArray }).eq('id', 1);
 
       if (updateDbRowError) {
-        console.log('Error updating db', updateDbRowError);
+        console.error('Error updating db', updateDbRowError);
       }
 
       for (let i = 0; i < uploadedFiles.length; i++) {
