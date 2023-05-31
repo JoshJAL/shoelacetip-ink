@@ -25,27 +25,27 @@ export default function Tattoos() {
       const currentTags = await getTags();
       setTags(currentTags);
 
-      if (currentGallery.length === 0) return;
-
-      try {
-        for (let i = 0; i < currentTags.length; i++) {
-          for (let j = 0; j < currentGallery.length; j++) {
-            if (currentGallery[j].tag === currentTags[i].tag_name && currentTags[i].id === 1) {
-              setTag1((prev) => [...prev, currentGallery[j]]);
+      if (currentGallery.length > 0) {
+        try {
+          for (let i = 0; i < currentTags.length; i++) {
+            for (let j = 0; j < currentGallery.length; j++) {
+              if (currentGallery[j].tag === currentTags[i].tag_name && currentTags[i].id === 1) {
+                setTag1((prev) => [...prev, currentGallery[j]]);
+              }
+              if (currentGallery[j].tag === currentTags[i].tag_name && currentTags[i].id === 2) {
+                setTag2((prev) => [...prev, currentGallery[j]]);
+              }
+              if (currentGallery[j].tag === currentTags[i].tag_name && currentTags[i].id === 3) {
+                setTag3((prev) => [...prev, currentGallery[j]]);
+              }
+              1;
             }
-            if (currentGallery[j].tag === currentTags[i].tag_name && currentTags[i].id === 2) {
-              setTag2((prev) => [...prev, currentGallery[j]]);
-            }
-            if (currentGallery[j].tag === currentTags[i].tag_name && currentTags[i].id === 3) {
-              setTag3((prev) => [...prev, currentGallery[j]]);
-            }
-            1;
           }
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoading(false);
         }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
       }
     }
 
